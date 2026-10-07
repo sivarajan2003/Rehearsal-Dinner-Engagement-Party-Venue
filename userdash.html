@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Client Dashboard - Vowora</title>
+
+  <link rel="icon" href="assets/fav1.png" type="image/png">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Montserrat"', 'sans-serif'],
+            sans: ['"Roboto"', 'sans-serif'],
+          },
+          fontWeight: {
+            regular: '400',
+            medium: '500',
+            semibold: '600',
+            bold: '700',
+            black: '900',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* Vowora Warm Elegant Palette */
+    :root {
+      --bg-color: #FDF6F2;
+      --bg-secondary: #F9F1EC;
+      --bg-card: #FFFFFF;
+      --bg-inverted: #1F1613;
+      --text-main: #2C1E1A;
+      --text-muted: #6D5B53;
+      --accent-color: #C26B4A;
+      --accent-dark: #9E4E33;
+      --border-color: #E8DDD7;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      overflow-x: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+
+    h1, h2, h3, h4, h5, h6, .brand-logo, .stat-value {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      --bg-color: #1A1310;
+      --bg-secondary: #2B1F1A;
+      --bg-card: #221A15;
+      --bg-inverted: #000000;
+      --text-main: #F5EDE8;
+      --text-muted: #BCA89E;
+      --accent-color: #D98B6B;
+      --accent-dark: #C26B4A;
+      --border-color: #3A2C26;
+    }
+
+    body.dark-mode .stat-card,
+    body.dark-mode .chart-card,
+    body.dark-mode .data-table,
+    body.dark-mode .settings-form,
+    body.dark-mode .course-card {
+      background: var(--bg-card);
+      border-color: var(--border-color);
+    }
+
+    body.dark-mode .stat-value,
+    body.dark-mode .card-header h3,
+    body.dark-mode .page-title h1,
+    body.dark-mode .course-title,
+    body.dark-mode .form-group label {
+      color: var(--text-main);
+    }
+
+    body.dark-mode .stat-label,
+    body.dark-mode .page-title p,
+    body.dark-mode .course-detail,
+    body.dark-mode .activity-time {
+      color: var(--text-muted);
+    }
+
+    body.dark-mode .stat-icon {
+      background: rgba(217, 139, 107, 0.15);
+    }
+
+    body.dark-mode th,
+    body.dark-mode td {
+      color: var(--text-main);
+      border-bottom-color: var(--border-color);
+    }
+
+    body.dark-mode .search-bar {
+      background: var(--bg-card);
+      border-color: var(--border-color);
+    }
+
+    body.dark-mode .search-bar input {
+      background: transparent;
+      color: var(--text-main);
+    }
+
+    body.dark-mode .action-btn {
+      background: var(--bg-card);
+      border-color: var(--border-color);
+      color: var(--accent-color);
+    }
+
+    body.dark-mode .action-btn:hover {
+      background: var(--accent-color);
+      color: #1A1310;
+    }
+
+    body.dark-mode .status-completed { background: #14532d; color: #86efac; }
+    body.dark-mode .status-pending { background: #78350f; color: #fde047; }
+    body.dark-mode .status-processing { background: #1e3a8a; color: #93c5fd; }
+
+    body.dark-mode .activity-icon {
+      background: rgba(217, 139, 107, 0.15);
+    }
+
+    body.dark-mode .form-group input,
+    body.dark-mode .form-group select {
+      background: var(--bg-secondary);
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+    
+    body.dark-mode input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1) brightness(0.9);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      width: 280px;
+      background-color: var(--bg-card);
+      color: var(--text-main);
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 1000;
+      transform: translateX(0);
+      box-shadow: 2px 0 12px rgba(194, 107, 74, 0.05);
+      border-right: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar { transform: translateX(-100%); z-index: 1001; }
+      .sidebar.mobile-open { transform: translateX(0); }
+    }
+
+    .sidebar-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(31, 22, 19, 0.8);
+      backdrop-filter: blur(4px);
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+    .sidebar-overlay.active { display: block; }
+    body.sidebar-open { overflow: hidden; }
+
+    .sidebar-header {
+      padding: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 768px) {
+      .sidebar-header { padding-left: 4.5rem; }
+      body.rtl-active .sidebar-header { padding-left: 1.5rem; padding-right: 4.5rem; }
+    }
+
+    .nav-menu { padding: 1.5rem 0; }
+    .nav-item { list-style: none; margin-bottom: 0.5rem; }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.75rem 1.5rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.3s;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 0 12px 12px 0;
+      font-size: 0.95rem;
+      letter-spacing: 0.5px;
+    }
+
+    body.rtl-active .nav-link { border-radius: 12px 0 0 12px; }
+
+    .nav-link:hover {
+      background: rgba(194, 107, 74, 0.08);
+      color: var(--accent-color);
+    }
+
+    .nav-link.active {
+      background: var(--accent-color);
+      color: #FFFFFF;
+    }
+
+    .nav-link i { width: 24px; font-size: 1.1rem; }
+
+    .sidebar-action-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0.75rem 1.5rem;
+      margin: 1rem 0 1.5rem 0;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      cursor: pointer;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.95rem;
+    }
+
+    .sidebar-action-btn:hover {
+      background: rgba(194, 107, 74, 0.08);
+      color: var(--accent-color);
+    }
+
+    /* Main Content */
+    .main-content {
+      flex: 1;
+      margin-left: 280px;
+      padding: 1.5rem 2rem;
+      transition: margin-left 0.3s ease;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        margin-left: 0;
+        padding: 1rem;
+        padding-top: 70px;
+      }
+    }
+
+    /* RTL Support */
+    body.rtl-active { direction: rtl; }
+
+    body.rtl-active .sidebar {
+      left: auto;
+      right: 0;
+      border-right: none;
+      border-left: 1px solid var(--border-color);
+    }
+
+    body.rtl-active .main-content {
+      margin-left: 0;
+      margin-right: 280px;
+    }
+
+    @media (max-width: 768px) {
+      body.rtl-active .main-content { margin-right: 0; }
+      body.rtl-active .sidebar { transform: translateX(100%); }
+      body.rtl-active .sidebar.mobile-open { transform: translateX(0); }
+      body.rtl-active .menu-toggle { left: auto; right: 1rem; }
+    }
+
+    /* Mobile Menu Toggle */
+    .menu-toggle {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 1100;
+      background: var(--accent-color);
+      color: #FFFFFF;
+      border: none;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(194, 107, 74, 0.25);
+      transition: all 0.2s;
+    }
+
+    .menu-toggle:hover {
+      transform: scale(1.05);
+      background: var(--accent-dark);
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle { display: flex; align-items: center; justify-content: center; }
+    }
+
+    /* Page Container */
+    .page-container { display: none; animation: fadeIn 0.4s ease; }
+    .page-container.active-page { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Top Header */
+    .top-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .top-header { flex-direction: column; align-items: stretch; gap: 1rem; }
+    }
+
+    .page-title h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    @media (max-width: 480px) { .page-title h1 { font-size: 1.6rem; } }
+
+    .page-title p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 0.25rem;
+      font-weight: 500;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+      .header-actions { width: 100%; justify-content: flex-end; gap: 0.8rem; }
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 30px;
+      padding: 0.6rem 1.2rem;
+      gap: 0.5rem;
+      flex: 1;
+      min-width: 180px;
+      transition: border-color 0.3s;
+    }
+
+    .search-bar:focus-within { border-color: var(--accent-color); }
+
+    @media (max-width: 768px) {
+      .search-bar { width: 100%; }
+      .search-bar input { width: 100%; }
+    }
+
+    .search-bar input {
+      border: none;
+      outline: none;
+      font-size: 0.9rem;
+      width: 200px;
+      background: transparent;
+      font-family: 'Roboto', sans-serif;
+      color: var(--text-main);
+    }
+
+    .toggle-buttons { display: flex; gap: 0.5rem; }
+
+    @media (max-width: 768px) { .toggle-buttons { justify-content: center; } }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid var(--border-color);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .text-btn {
+      font-size: 12px;
+      font-weight: 700;
+      width: auto;
+      border-radius: 40px;
+      padding: 0 16px;
+      letter-spacing: 1px;
+    }
+
+    .icon-btn:hover {
+      background: var(--accent-color);
+      color: #FFFFFF;
+      border-color: var(--accent-color);
+    }
+
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      padding-left: 0.5rem;
+      border-left: 1px solid var(--border-color);
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      background: var(--accent-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 1024px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px) { .stats-grid { grid-template-columns: 1fr; gap: 1rem; } }
+
+    .stat-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.3s;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-color);
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(194, 107, 74, 0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+
+    .stat-icon i { font-size: 1.4rem; color: var(--accent-dark); }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 0.2rem;
+    }
+
+    .stat-label {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Charts Section */
+    .charts-section {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 1024px) and (min-width: 769px) { .charts-section { grid-template-columns: 1.5fr 1fr; } }
+    @media (max-width: 768px) { .charts-section { grid-template-columns: 1fr; gap: 1.2rem; } }
+
+    .chart-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.8rem;
+    }
+
+    .card-header h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.3px;
+    }
+
+    /* Progress Items */
+    .top-product-item { margin-bottom: 1.2rem; width: 100%; }
+
+    .top-product-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .top-product-name {
+      font-size: 0.9rem;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .top-product-sales {
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--accent-dark);
+    }
+
+    .progress-bar-container {
+      background: var(--bg-secondary);
+      border-radius: 10px;
+      height: 6px;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      background: var(--accent-color);
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    /* Tables */
+    .data-table {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    }
+
+    table { width: 100%; border-collapse: collapse; min-width: 600px; }
+
+    @media (max-width: 640px) {
+      table { min-width: 100%; }
+      th, td { padding: 0.8rem; font-size: 0.8rem; }
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    th {
+      font-weight: 700;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .status-completed { background: #dcfce7; color: #166534; }
+    .status-pending { background: #fef9c3; color: #854d0e; }
+    .status-processing { background: #dbeafe; color: #1e40af; }
+
+    /* Packages Grid */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 640px) { .products-grid { grid-template-columns: 1fr; } }
+
+    .course-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(194, 107, 74, 0.10);
+      border-color: var(--accent-color);
+    }
+
+    .product-image {
+      height: 180px;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .product-info { padding: 1.2rem; }
+
+    .course-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-price {
+      color: var(--accent-dark);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .course-detail {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+    }
+
+    /* Quick Actions */
+    .quick-actions {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 640px) { .quick-actions { flex-direction: column; gap: 0.8rem; } }
+
+    .action-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-weight: 700;
+      color: var(--text-main);
+      transition: all 0.3s;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .action-btn:hover {
+      background: var(--accent-color);
+      color: #FFFFFF;
+      border-color: var(--accent-color);
+    }
+
+    /* Activity Items */
+    .activity-item {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(194, 107, 74, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(194, 107, 74, 0.3);
+    }
+
+    .activity-icon i { color: var(--accent-dark); }
+
+    .activity-content p {
+      font-weight: 600;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .activity-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 0.3rem;
+      font-weight: 500;
+    }
+
+    /* Analytics Grid */
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 1024px) { .analytics-grid { grid-template-columns: 1fr; } }
+
+    /* Settings Form */
+    .settings-form {
+      background: var(--bg-card);
+      border-radius: 12px;
+      padding: 2rem;
+      border: 1px solid var(--border-color);
+      max-width: 800px;
+    }
+
+    .form-group { margin-bottom: 1.5rem; }
+
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-family: inherit;
+      transition: border-color 0.3s;
+      background: var(--bg-secondary);
+      color: var(--text-main);
+    }
+
+    .form-group input:focus, .form-group select:focus {
+      outline: none;
+      border-color: var(--accent-color);
+    }
+
+    .save-btn {
+      background: var(--accent-color);
+      color: #FFFFFF;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.85rem;
+      font-family: 'Montserrat', sans-serif;
+      transition: background 0.3s;
+    }
+
+    .save-btn:hover { background: var(--accent-dark); }
+
+    @media (max-width: 640px) { .save-btn { width: 100%; } }
+
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg-secondary); }
+    ::-webkit-scrollbar-thumb { background: var(--accent-color); border-radius: 3px; }
+
+    .chart-card canvas { max-width: 100%; height: auto; }
+  </style>
+    <style>
+        ::-webkit-scrollbar { display: none; }
+        html { scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+  <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <div class="dashboard-container">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="text-xl font-semibold brand-logo tracking-tight block" style="color: var(--text-main) !important; text-decoration: none;">
+          <i class="fas fa-ring" style="color: var(--accent-color); margin-right: 0.2em; font-size: 1em; vertical-align: middle;"></i>Vowora
+        </a>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item" data-page="dashboard"><a class="nav-link active"><i class="fas fa-gauge-high"></i><span>My Dashboard</span></a></li>
+        <li class="nav-item" data-page="orders"><a class="nav-link"><i class="fas fa-calendar-check"></i><span>Venue Bookings</span></a></li>
+        <li class="nav-item" data-page="products"><a class="nav-link"><i class="fas fa-champagne-glasses"></i><span>Event Packages</span></a></li>
+        <li class="nav-item" data-page="customers"><a class="nav-link"><i class="fas fa-file-invoice-dollar"></i><span>Payments & Invoices</span></a></li>
+        <li class="nav-item" data-page="analytics"><a class="nav-link"><i class="fas fa-user-group"></i><span>RSVP & Guests</span></a></li>
+        <li class="nav-item" data-page="settings"><a class="nav-link"><i class="fas fa-user-gear"></i><span>Profile Settings</span></a></li>
+      </ul>
+      <a href="index.html" class="sidebar-action-btn" id="logoutBtn">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+    </aside>
+
+    <main class="main-content" id="mainContent">
+      <div id="dashboard-page" class="page-container active-page"></div>
+      <div id="orders-page" class="page-container"></div>
+      <div id="products-page" class="page-container"></div>
+      <div id="customers-page" class="page-container"></div>
+      <div id="analytics-page" class="page-container"></div>
+      <div id="settings-page" class="page-container"></div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // ---------- CLIENT DATA ----------
+    const bookingsData = [
+      { id: '#VV-2041', venue: 'Garden Pavilion', date: '2026-08-02', event: 'Rehearsal Dinner', guests: 68, total: 4800.00, status: 'Processing' },
+      { id: '#VV-2038', venue: 'Rooftop Terrace', date: '2026-07-25', event: 'Engagement Party', guests: 95, total: 7900.00, status: 'Completed' },
+      { id: '#VV-2022', venue: 'Library Lounge', date: '2026-07-18', event: 'Rehearsal Dinner', guests: 32, total: 2400.00, status: 'Completed' },
+      { id: '#VV-2055', venue: 'Lakeside Deck', date: '2026-08-10', event: 'Engagement Party', guests: 74, total: 4800.00, status: 'Pending' },
+      { id: '#VV-1988', venue: 'Cellar Room', date: '2026-07-10', event: 'Rehearsal Dinner', guests: 38, total: 2400.00, status: 'Completed' }
+    ];
+
+    const packagesData = [
+      { id: 1, name: 'Signature — The Venue', price: '4,800', stock: 'Active', progress: 'Catering + Floral + Setup', image: 'assets/space1.jpg' },
+      { id: 2, name: 'Catering — Seasonal Menu', price: '65', stock: 'Confirmed', progress: '4-course + cocktail hour', image: 'assets/space2.jpg' },
+      { id: 3, name: 'Florals & Decor Add-On', price: '650', stock: 'Pending', progress: 'Custom colour palette', image: 'assets/space3.jpg' }
+    ];
+
+    const invoicesData = [
+      { name: 'INV-2026-092', email: 'The Venue Package Deposit', orders: 'Signature', spent: 1200.00, status: 'Paid' },
+      { name: 'INV-2026-088', email: 'Florals & Decor Add-On', orders: 'Decor', spent: 650.00, status: 'Pending' },
+      { name: 'INV-2026-041', email: 'Catering — Guest Additions', orders: 'Catering', spent: 480.00, status: 'Paid' }
+    ];
+
+    const skillsProgressList = [
+      { name: 'RSVP Confirmed', sales: '85%', percent: 85 },
+      { name: 'Meal Choices Selected', sales: '72%', percent: 72 },
+      { name: 'Dietary Notes Submitted', sales: '60%', percent: 60 },
+      { name: 'Seating Assigned', sales: '40%', percent: 40 }
+    ];
+
+    const activitiesFeed = [
+      { icon: 'envelope-open-text', text: 'Invitations sent for "The Venue" celebration on Aug 2.', time: 'Today, 10:30 AM' },
+      { icon: 'utensils', text: 'Catering menu confirmed — 4-course dinner + cocktail hour.', time: 'Yesterday, 4:15 PM' },
+      { icon: 'file-invoice', text: 'Payment receipt generated for INV-2026-092.', time: 'Jul 24, 2026' },
+      { icon: 'user-check', text: 'RSVP count updated by 12 guests.', time: 'Jul 20, 2026' }
+    ];
+
+    let hoursChartInstance = null;
+
+    // Toggle Functions
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('vowVenue_darkMode', document.body.classList.contains('dark-mode'));
+      const darkIcon = document.getElementById('darkModeIconBtn');
+      if (darkIcon) darkIcon.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    }
+
+    function toggleRTL() {
+      document.body.classList.toggle('rtl-active');
+      localStorage.setItem('vowVenue_rtl', document.body.classList.contains('rtl-active'));
+      const rtlBtn = document.getElementById('rtlIconBtn');
+      if (rtlBtn) rtlBtn.innerHTML = document.body.classList.contains('rtl-active') ? 'RTL' : 'LTR';
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('mobile-open');
+      overlay.classList.remove('active');
+      document.body.classList.remove('sidebar-open');
+    }
+
+    function openSidebar() {
+      sidebar.classList.add('mobile-open');
+      overlay.classList.add('active');
+      document.body.classList.add('sidebar-open');
+    }
+
+    window.showPage = function(pageId) {
+      const pages = ['dashboard', 'orders', 'products', 'customers', 'analytics', 'settings'];
+      pages.forEach(p => document.getElementById(`${p}-page`).classList.remove('active-page'));
+      document.getElementById(`${pageId}-page`).classList.add('active-page');
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+      document.querySelector(`[data-page="${pageId}"] .nav-link`).classList.add('active');
+      if (window.innerWidth <= 768) closeSidebar();
+    };
+
+    // Render Functions
+    function renderDashboard() {
+      const dashboardDiv = document.getElementById('dashboard-page');
+      dashboardDiv.innerHTML = `
+        <div class="top-header">
+          <div class="page-title"><h1>Client Dashboard</h1><p>Welcome back, Alex & Jamie! Here is your celebration progress.</p></div>
+          <div class="header-actions">
+            <div class="search-bar"><i class="fas fa-search" style="color:var(--text-muted)"></i><input type="text" placeholder="Search bookings, guests..."></div>
+            <div class="toggle-buttons">
+              <button class="icon-btn" id="darkModeIconBtn"><i class="fas fa-moon"></i></button>
+              <button class="icon-btn text-btn" id="rtlIconBtn">LTR</button>
+            </div>
+            <div class="user-profile"><div class="user-avatar"><i class="fas fa-user-group"></i></div><span style="font-weight:700;">Alex & Jamie</span></div>
+          </div>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon"><i class="fas fa-calendar-check"></i></div><div class="stat-value">2</div><div class="stat-label">Upcoming Events</div></div>
+          <div class="stat-card"><div class="stat-icon"><i class="fas fa-user-group"></i></div><div class="stat-value">187</div><div class="stat-label">Guests Invited</div></div>
+          <div class="stat-card"><div class="stat-icon"><i class="fas fa-champagne-glasses"></i></div><div class="stat-value">$4,800</div><div class="stat-label">Package Value</div></div>
+          <div class="stat-card"><div class="stat-icon"><i class="fas fa-envelope-open-text"></i></div><div class="stat-value">68%</div><div class="stat-label">RSVP Confirmed</div></div>
+        </div>
+        <div class="quick-actions">
+          <button class="action-btn" onclick="showPage('orders');"><i class="fas fa-plus"></i> Book New Event</button>
+          <button class="action-btn" onclick="showPage('analytics');"><i class="fas fa-user-check"></i> View RSVP Report</button>
+          <button class="action-btn"><i class="fas fa-comment-dots"></i> Message Planner</button>
+        </div>
+        <div class="charts-section">
+          <div class="chart-card"><div class="card-header"><h3>RSVP Responses Over Time</h3><span style="color:var(--accent-dark); font-size:0.8rem; font-weight:700;">Weekly Summary</span></div><div style="width:100%; height: 220px; position:relative;"><canvas id="hoursChart"></canvas></div></div>
+          <div class="chart-card"><div class="card-header"><h3>Guest Management Progress</h3></div><div id="skillsProgressList"></div></div>
+        </div>
+        <div class="data-table"><div class="card-header"><h3>Recent Venue Bookings</h3><a href="#" style="color:var(--accent-dark); font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:1px;" onclick="showPage('orders'); return false;">View All →</a></div><div id="recentLessonsTable"></div></div>
+        <div class="chart-card"><div class="card-header"><h3>Recent Activity Feed</h3></div><div id="activityFeed"></div></div>
+      `;
+
+      document.getElementById('skillsProgressList').innerHTML = skillsProgressList.map(s => `<div class="top-product-item"><div class="top-product-header"><span class="top-product-name">${s.name}</span><span class="top-product-sales">${s.sales}</span></div><div class="progress-bar-container"><div class="progress-bar-fill" style="width: ${s.percent}%;"></div></div></div>`).join('');
+
+      document.getElementById('recentLessonsTable').innerHTML = `<table><thead><tr><th>Booking ID</th><th>Venue</th><th>Event</th><th>Guests</th><th>Cost</th><th>Status</th></tr></thead><tbody>${bookingsData.slice(0,4).map(o => `<tr><td><strong style="color:var(--text-main)">${o.id}</strong></td><td>${o.venue}</td><td>${o.event}</td><td>${o.guests}</td><td>$${o.total.toFixed(2)}</td><td><span class="status-badge status-${o.status.toLowerCase()}">${o.status}</span></td></tr>`).join('')}</tbody></table>`;
+
+      document.getElementById('activityFeed').innerHTML = activitiesFeed.map(a => `<div class="activity-item"><div class="activity-icon"><i class="fas fa-${a.icon}"></i></div><div class="activity-content"><p>${a.text}</p><span class="activity-time">${a.time}</span></div></div>`).join('');
+
+      const hoursCtx = document.getElementById('hoursChart')?.getContext('2d');
+      if (hoursCtx) {
+        if (hoursChartInstance) hoursChartInstance.destroy();
+        hoursChartInstance = new Chart(hoursCtx, {
+          type: 'line',
+          data: { labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'], datasets: [{ label: 'RSVPs Confirmed', data: [12, 28, 35, 48, 68], borderColor: '#C26B4A', backgroundColor: 'rgba(194, 107, 74, 0.15)', fill: true, tension: 0.4 }] },
+          options: { responsive: true, maintainAspectRatio: false }
+        });
+      }
+
+      document.getElementById('darkModeIconBtn')?.addEventListener('click', toggleDarkMode);
+      document.getElementById('rtlIconBtn')?.addEventListener('click', toggleRTL);
+    }
+
+    function renderOrders() {
+      const completed = bookingsData.filter(o => o.status === 'Completed').length;
+      const processing = bookingsData.filter(o => o.status === 'Processing').length;
+      const pending = bookingsData.filter(o => o.status === 'Pending').length;
+      document.getElementById('orders-page').innerHTML = `
+        <div class="top-header"><div class="page-title"><h1>Venue Bookings</h1><p>Track your scheduled events and confirmations.</p></div><div class="header-actions"><div class="search-bar"><i class="fas fa-search" style="color:var(--text-muted)"></i><input type="text" placeholder="Search booking ID..."></div></div></div>
+        <div class="stats-grid"><div class="stat-card"><div class="stat-icon"><i class="fas fa-check-circle"></i></div><div class="stat-value">${completed}</div><div class="stat-label">Confirmed</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-spinner"></i></div><div class="stat-value">${processing}</div><div class="stat-label">In Progress</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-hourglass-start"></i></div><div class="stat-value">${pending}</div><div class="stat-label">Upcoming</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-shield"></i></div><div class="stat-value">Fully Insured</div><div class="stat-label">Event Cover</div></div></div>
+        <div class="data-table"><table><thead><tr><th>Booking ID</th><th>Venue</th><th>Date</th><th>Event Type</th><th>Guests</th><th>Cost</th><th>Status</th></tr></thead><tbody>${bookingsData.map(o => `<tr><td><strong style="color:var(--text-main)">${o.id}</strong></td><td>${o.venue}</td><td>${o.date}</td><td>${o.event}</td><td>${o.guests}</td><td>$${o.total.toFixed(2)}</td><td><span class="status-badge status-${o.status.toLowerCase()}">${o.status}</span></td></tr>`).join('')}</tbody></table></div>
+      `;
+    }
+
+    function renderProducts() {
+      document.getElementById('products-page').innerHTML = `
+        <div class="top-header"><div class="page-title"><h1>Event Packages</h1><p>Your confirmed catering, decor, and venue packages</p></div><div class="header-actions"><button class="action-btn" style="width:auto;" onclick="window.location.href='pricing.html';"><i class="fas fa-plus"></i> Browse Packages</button></div></div>
+        <div class="products-grid" id="coursesGrid"></div>
+      `;
+      const grid = document.getElementById('coursesGrid');
+      grid.innerHTML = packagesData.map(p => `<div class="course-card"><div class="product-image" style="background-image:url('${p.image}');"></div><div class="product-info"><div class="course-title">${p.name}</div><div class="product-price">$${p.price} <span style="font-size:0.75rem; color:var(--text-muted); font-weight:500;">Package Price</span></div><div class="course-detail">Status: <span style="color:var(--text-main); font-weight:700;">${p.stock}</span></div><div class="course-detail" style="margin-top:2px;">${p.progress}</div></div></div>`).join('');
+    }
+
+    function renderCustomers() {
+      const total = invoicesData.length, paid = invoicesData.filter(c => c.status === 'Paid').length, pending = invoicesData.filter(c => c.status === 'Pending').length;
+      document.getElementById('customers-page').innerHTML = `<div class="top-header"><div class="page-title"><h1>Payments & Invoices</h1><p>Manage your deposits, payments, and statements</p></div></div><div class="stats-grid"><div class="stat-card"><div class="stat-icon"><i class="fas fa-file-invoice"></i></div><div class="stat-value">${total}</div><div class="stat-label">Total Invoices</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-check"></i></div><div class="stat-value">${paid}</div><div class="stat-label">Paid</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-hourglass-half"></i></div><div class="stat-value">${pending}</div><div class="stat-label">Pending</div></div><div class="stat-card"><div class="stat-icon"><i class="fas fa-lock"></i></div><div class="stat-value">SSL 256</div><div class="stat-label">Encrypted</div></div></div><div class="data-table"><table><thead><tr><th>Invoice ID</th><th>Description</th><th>Category</th><th>Amount</th><th>Status</th></tr></thead><tbody>${invoicesData.map(c => `<tr><td><strong style="color:var(--text-main)">${c.name}</strong></td><td>${c.email}</td><td>${c.orders}</td><td>$${c.spent.toFixed(2)}</td><td><span class="status-badge ${c.status === 'Paid' ? 'status-completed' : 'status-pending'}">${c.status}</span></td></tr>`).join('')}</tbody></table></div>`;
+    }
+
+    function renderAnalytics() {
+      document.getElementById('analytics-page').innerHTML = `<div class="top-header"><div class="page-title"><h1>RSVP & Guests</h1><p>Track guest responses, meal choices, and seating</p></div></div><div class="analytics-grid"><div class="chart-card"><div class="card-header"><h3>RSVP Breakdown by Response</h3></div><div style="height: 220px;"><canvas id="skillsChart"></canvas></div></div><div class="chart-card"><div class="card-header"><h3>Guest Meal Preferences</h3></div><div style="height: 220px;"><canvas id="roadTypeChart"></canvas></div></div></div><div class="data-table"><div class="card-header"><h3>Guest RSVP Log</h3></div><table><thead><tr><th>Guest Name</th><th>Status</th><th>Meal Choice</th><th>Table</th></tr></thead><tbody>${skillsProgressList.map((p, i) => `<tr><td><strong style="color:var(--text-main); font-family:'Montserrat', sans-serif;">${p.name}</strong></td><td>Confirmed</td><td>Standard</td><td>${i + 1}</td></tr>`).join('')}</tbody></table></div>`;
+
+      const skillCtx = document.getElementById('skillsChart')?.getContext('2d');
+      if (skillCtx) new Chart(skillCtx, { type: 'bar', data: { labels: ['Confirmed', 'Pending', 'Declined', 'Maybe', 'No Response'], datasets: [{ label: 'Guests', data: [68, 22, 8, 14, 30], backgroundColor: '#C26B4A' }] }, options: { responsive: true, maintainAspectRatio: false } });
+
+      const roadCtx = document.getElementById('roadTypeChart')?.getContext('2d');
+      if (roadCtx) new Chart(roadCtx, { type: 'doughnut', data: { labels: ['Standard', 'Vegetarian', 'Vegan', 'Gluten-Free'], datasets: [{ data: [60, 25, 8, 7], backgroundColor: ['#C26B4A', '#9E4E33', '#D98B6B', '#6D5B53'], borderColor: 'transparent' }] }, options: { responsive: true, maintainAspectRatio: false } });
+    }
+
+    function renderSettings() {
+      document.getElementById('settings-page').innerHTML = `<div class="top-header"><div class="page-title"><h1>Profile Settings</h1><p>Manage your contact details and event information</p></div></div><div class="settings-form"><h3 style="margin-bottom:1.5rem; font-family:'Montserrat', sans-serif; font-size:1.3rem; font-weight:800;">Couple Details</h3><div class="form-group"><label>Full Names</label><input type="text" value="Alex & Jamie Morgan"></div><div class="form-group"><label>Email Address</label><input type="email" value="alex.jamie@example.com"></div><div class="form-group"><label>Phone Number</label><input type="text" value="+1 (555) 000-0000"></div><div class="form-group"><label>Event Date</label><input type="date" value="2026-08-02"></div><div class="form-group"><label>Preferred Venue</label><input type="text" value="Garden Pavilion"></div><button class="save-btn" onclick="alert('Profile preferences successfully updated.')">Save Changes</button></div>`;
+    }
+
+    // Navigation listener
+    document.querySelectorAll('.nav-item').forEach(item => item.addEventListener('click', () => showPage(item.getAttribute('data-page'))));
+
+    // Mobile sidebar controls
+    const menuToggle = document.getElementById('menuToggle');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    menuToggle?.addEventListener('click', () => sidebar.classList.contains('mobile-open') ? closeSidebar() : openSidebar());
+    overlay?.addEventListener('click', closeSidebar);
+
+    // Load saved preferences
+    if (localStorage.getItem('vowVenue_darkMode') === 'true') {
+      document.body.classList.add('dark-mode');
+      const darkIcon = document.getElementById('darkModeIconBtn');
+      if (darkIcon) darkIcon.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+      const darkIcon = document.getElementById('darkModeIconBtn');
+      if (darkIcon) darkIcon.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+    if (localStorage.getItem('vowVenue_rtl') === 'true') document.body.classList.add('rtl-active');
+
+    // Initialize pages
+    renderDashboard();
+    renderOrders();
+    renderProducts();
+    renderCustomers();
+    renderAnalytics();
+    renderSettings();
+
+    setTimeout(() => {
+      document.getElementById('darkModeIconBtn')?.addEventListener('click', toggleDarkMode);
+      document.getElementById('rtlIconBtn')?.addEventListener('click', toggleRTL);
+    }, 100);
+  </script>
+</body>
+</html>
+
+
+
+

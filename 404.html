@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/fav1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>404 · Page Not Found · Vowora</title>
+    <script src="tailwind.js"></script>
+    <style>
+        /* --- Modern Warm Elegant Palette (matches your project) --- */
+        :root, html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #2C1E1A;
+            --color-secondary-text: #6D5B53;
+            --color-accent: #C26B4A;
+            --color-accent-light: #FDF6F2;
+            --color-border: #E8DDD7;
+            --color-hover: #F9F1EC;
+            --color-footer-bg: #1F1613;
+            --color-footer-text: #F5EDE8;
+        }
+        html[data-theme='dark'] {
+            --color-background: #1A1310;
+            --color-primary-text: #F5EDE8;
+            --color-secondary-text: #BCA89E;
+            --color-accent: #D98B6B;
+            --color-accent-light: #2E1E18;
+            --color-border: #3A2C26;
+            --color-hover: #2B1F1A;
+            --color-footer-bg: #0F0B09;
+            --color-footer-text: #F0E6E0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1, h2, h3, h4, h5, h6 { font-weight: 500 !important; }
+        p, .text-secondary-text { font-weight: 400 !important; }
+
+        .text-primary-text { color: var(--color-primary-text); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .text-accent { color: var(--color-accent); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-hover { background-color: var(--color-hover); }
+        .border-border { border-color: var(--color-border); }
+
+        .bg-custom-gradient {
+            background: linear-gradient(135deg, #C26B4A 0%, #9E4E33 100%);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: linear-gradient(135deg, #C26B4A 0%, #9E4E33 100%);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            opacity: 0.88;
+            transform: scale(1.04);
+            box-shadow: 0 6px 18px rgba(194,107,74,0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: white;
+            box-shadow: 0 4px 12px rgba(194,107,74,0.25);
+        }
+        html[data-theme='dark'] .btn-outline {
+            color: #D98B6B;
+            border-color: #D98B6B;
+        }
+        html[data-theme='dark'] .btn-outline:hover {
+            background: #D98B6B;
+            color: #1A1310;
+        }
+
+        /* Error card */
+        .error-card {
+            background: var(--color-background);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 32px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 25px 60px rgba(194, 107, 74, 0.12);
+            border: 1px solid var(--color-border);
+            width: 100%;
+            max-width: 560px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 404 number */
+        .error-number {
+            font-size: clamp(72px, 16vh, 120px);
+            font-weight: 900;
+            background: linear-gradient(135deg, #C26B4A 0%, #9E4E33 50%, #C9A227 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1;
+            letter-spacing: -3px;
+        }
+        html[data-theme='dark'] .error-number {
+            background: linear-gradient(135deg, #FDF6F2 0%, #C26B4A 50%, #C9A227 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* Animations */
+        .pulse-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(194, 107, 74, 0.2)); }
+            50% { filter: drop-shadow(0 0 40px rgba(194, 107, 74, 0.5)) drop-shadow(0 0 80px rgba(194, 107, 74, 0.2)); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        .ring-float {
+            animation: ringFloat 8s ease-in-out infinite;
+        }
+        @keyframes ringFloat {
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
+        }
+        .ring-float-2 {
+            animation: ringFloat2 10s ease-in-out infinite;
+        }
+        @keyframes ringFloat2 {
+            0%, 100% { transform: translateY(0) rotate(5deg); }
+            50% { transform: translateY(-15px) rotate(-5deg); }
+        }
+
+        .star-twinkle {
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        .star-twinkle:nth-child(2) { animation-delay: 0.7s; }
+        .star-twinkle:nth-child(3) { animation-delay: 1.4s; }
+        .star-twinkle:nth-child(4) { animation-delay: 0.3s; }
+        .star-twinkle:nth-child(5) { animation-delay: 1.8s; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Floating background rings */
+        .floating-ring-1 {
+            position: fixed;
+            top: 8%; left: 5%;
+            font-size: 60px;
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+            color: var(--color-accent);
+        }
+        .floating-ring-2 {
+            position: fixed;
+            bottom: 10%; right: 5%;
+            font-size: 80px;
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 0;
+            color: var(--color-accent);
+        }
+        .floating-ring-3 {
+            position: fixed;
+            top: 50%; right: 8%;
+            font-size: 40px;
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+            color: var(--color-accent);
+        }
+        html[data-theme='dark'] .floating-ring-1,
+        html[data-theme='dark'] .floating-ring-2,
+        html[data-theme='dark'] .floating-ring-3 {
+            color: var(--color-accent-light);
+            opacity: 0.1;
+        }
+
+        /* Quick links */
+        .quick-link {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .quick-link:hover {
+            color: var(--color-primary-text);
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .error-card {
+                padding: 1.75rem 1.25rem;
+                border-radius: 24px;
+                margin: 0 12px;
+            }
+            .error-number { font-size: 64px; }
+        }
+        @media (max-width: 360px) {
+            .error-card { padding: 1.25rem 1rem; border-radius: 20px; }
+            .error-number { font-size: 52px; }
+        }
+        @media (max-height: 700px) {
+            .error-card { padding: 1.5rem 1.5rem; }
+            .error-number { font-size: 60px; }
+        }
+        @media (max-height: 600px) {
+            .error-card { padding: 1rem 1.25rem; }
+            .error-number { font-size: 48px; }
+        }
+    </style>
+    <style>
+        ::-webkit-scrollbar { display: none; }
+        html { scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════ BACKGROUND DECORATIONS ═══════════ -->
+    <div class="floating-ring-1 ring-float"><i class="fa-solid fa-ring"></i></div>
+    <div class="floating-ring-2 ring-float-2"><i class="fa-solid fa-ring"></i></div>
+    <div class="floating-ring-3 ring-float"><i class="fa-solid fa-champagne-glasses"></i></div>
+
+    <!-- Twinkling stars -->
+    <div class="star-twinkle absolute top-[8%] left-[12%] text-accent/20 text-2xl"><i class="fa-solid fa-star"></i></div>
+    <div class="star-twinkle absolute top-[15%] right-[15%] text-accent/20 text-xl"><i class="fa-solid fa-star"></i></div>
+    <div class="star-twinkle absolute top-[70%] left-[20%] text-accent/20 text-3xl"><i class="fa-solid fa-star"></i></div>
+    <div class="star-twinkle absolute bottom-[15%] right-[20%] text-accent/20 text-2xl"><i class="fa-solid fa-star"></i></div>
+    <div class="star-twinkle absolute top-[45%] right-[5%] text-accent/20 text-xl"><i class="fa-solid fa-star"></i></div>
+
+    <!-- ═══════════ MAIN CONTENT ═══════════ -->
+    <div class="relative z-10 w-full max-w-[560px] px-4">
+        <div class="error-card fade-in-up">
+
+            <!-- Brand logo -->
+            <div class="flex justify-center mb-6">
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <i class="fa-solid fa-ring text-accent text-3xl group-hover:scale-110 transition-transform duration-500"></i>
+                    <span class="text-accent text-3xl font-serif font-extrabold tracking-wide">Vowora</span>
+                </a>
+            </div>
+
+            <!-- Champagne icon -->
+            <div class="text-6xl md:text-7xl text-accent/50 mb-4 floating text-center">
+                <i class="fa-solid fa-champagne-glasses"></i>
+            </div>
+
+            <!-- 404 Number -->
+            <div class="error-number pulse-glow text-center">404</div>
+
+            <!-- Error Title -->
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-primary-text mb-4 text-center leading-tight">
+                Oops! Page <span class="italic text-accent">Not Found</span>
+            </h1>
+
+            <!-- Error Message -->
+            <p class="text-secondary-text text-lg max-w-md mx-auto leading-relaxed text-center mb-2">
+                Looks like this page wandered off before the toast. But don't worry — your celebration is right where you left it.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap gap-4 justify-center mt-8">
+                <a href="index.html" class="btn-primary px-8 py-3.5 rounded-full font-bold shadow-lg inline-flex items-center gap-2">
+                    <i class="fa-solid fa-home"></i> Back to Home
+                </a>
+                <a href="contact.html" class="btn-outline px-8 py-3.5 rounded-full font-bold inline-flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-check"></i> Book a Tour
+                </a>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-8 pt-6 border-t border-border">
+                <a href="about.html" class="quick-link">About</a>
+                <span class="text-border">|</span>
+                <a href="services.html" class="quick-link">Spaces</a>
+                <span class="text-border">|</span>
+                <a href="pricing.html" class="quick-link">Packages</a>
+                <span class="text-border">|</span>
+                <a href="process.html" class="quick-link">Decor</a>
+                <span class="text-border">|</span>
+                <a href="contact.html" class="quick-link">Contact</a>
+            </div>
+
+            <!-- Search hint -->
+            <div class="mt-6 text-center">
+                <p class="text-sm text-secondary-text">
+                    <i class="fa-solid fa-search text-accent mr-1"></i>
+                    Need help finding something?
+                    <a href="contact.html" class="text-accent font-bold hover:underline">Talk to our planners</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ═══════════ SCRIPTS ═══════════ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+
+            // Theme handling — same as your project
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+            } else if (savedTheme === 'light') {
+                html.setAttribute('data-theme', 'light');
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                html.setAttribute('data-theme', 'dark');
+            }
+
+            // RTL handling — same as your project
+            const savedLang = localStorage.getItem('language');
+            if (savedLang === 'ar') {
+                html.setAttribute('dir', 'rtl');
+            }
+
+            // Keyboard shortcuts
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'h' || e.key === 'H') window.location.href = 'index.html';
+                if (e.key === 'b' || e.key === 'B') window.location.href = 'contact.html';
+                if (e.key === 'a' || e.key === 'A') window.location.href = 'about.html';
+                if (e.key === 's' || e.key === 'S') window.location.href = 'services.html';
+                if (e.key === 'p' || e.key === 'P') window.location.href = 'pricing.html';
+            });
+
+            // Console easter egg
+            console.log('%c✨ Vowora', 'font-size:24px; font-weight:bold; color:#C26B4A;');
+            console.log('%c404 · Page Not Found', 'font-size:16px; color:#9E4E33;');
+            console.log('%cLooks like you took a wrong turn! Let\'s get you back to the celebration.', 'font-size:12px; color:#6D5B53;');
+        });
+    </script>
+</body>
+</html>
+
+
+
+

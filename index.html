@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="assets/fav1.png" type="image/png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>Vowora · Rehearsal & Engagement</title>
+    <script src="tailwind.js"></script>
+    <style>
+        /* --- Modern Warm Elegant Palette (celebration / romantic) --- */
+        :root, html[data-theme='light'] {
+            --color-background: #FFFFFF;
+            --color-primary-text: #2C1E1A;
+            --color-secondary-text: #6D5B53;
+            --color-accent: #C26B4A;
+            --color-accent-light: #FDF6F2;
+            --color-border: #E8DDD7;
+            --color-hover: #F9F1EC;
+            --color-footer-bg: #1F1613;
+            --color-footer-text: #F5EDE8;
+        }
+        html[data-theme='dark'] {
+            --color-background: #1A1310;
+            --color-primary-text: #F5EDE8;
+            --color-secondary-text: #BCA89E;
+            --color-accent: #D98B6B;
+            --color-accent-light: #2E1E18;
+            --color-border: #3A2C26;
+            --color-hover: #2B1F1A;
+            --color-footer-bg: #0F0B09;
+            --color-footer-text: #F0E6E0;
+        }
+        
+        body {
+            background-color: var(--color-background);
+            color: var(--color-primary-text);
+            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+        
+        .text-primary-text { color: var(--color-primary-text); }
+        .text-secondary-text { color: var(--color-secondary-text); }
+        .text-accent { color: var(--color-accent); }
+        .text-accent-light { color: var(--color-accent-light); }
+        .bg-background { background-color: var(--color-background); }
+        .bg-hover { background-color: var(--color-hover); }
+        .bg-accent { background-color: var(--color-accent); }
+        .border-border { border-color: var(--color-border); }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 500 !important;
+        }
+        p, .text-secondary-text {
+            font-weight: 400 !important;
+        }
+
+        .bg-custom-gradient {
+            background: linear-gradient(135deg, #C26B4A 0%, #9E4E33 100%);
+        }
+
+        #main-footer {
+            background-color: var(--color-footer-bg);
+            color: var(--color-footer-text);
+        }
+        #main-footer .footer-heading {
+            color: #D98B6B !important; 
+        }
+        #main-footer .footer-link:hover {
+            color: #E6A88C;
+            padding-left: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            padding: 0.5rem 0.75rem;
+            font-weight: 600;
+        }
+        .nav-link:hover {
+            color: var(--color-accent) !important;
+        }
+
+        .dropdown-wrapper { position: relative; }
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            min-width: 220px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        .dropdown-wrapper:hover .dropdown-menu {
+            opacity: 1; visibility: visible; transform: translateY(0);
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--color-primary-text);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .dropdown-menu a:last-child { border-bottom: none; }
+        .dropdown-menu a:hover {
+            background-color: var(--color-hover);
+            color: var(--color-accent);
+            padding-left: 1.25rem;
+        }
+
+        @media (max-width: 1024px) {
+            .dropdown-menu { position: static; display: none; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
+            .dropdown-wrapper:hover .dropdown-menu { display: block; }
+        }
+
+        .btn-primary, .book-btn {
+            background: linear-gradient(135deg, #C26B4A 0%, #9E4E33 100%);
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-primary:hover, .book-btn:hover {
+            opacity: 0.88;
+            transform: scale(1.04);
+            box-shadow: 0 6px 18px rgba(194,107,74,0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--color-accent);
+            border: 2px solid var(--color-accent);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-outline:hover {
+            background: var(--color-accent);
+            color: white;
+            box-shadow: 0 4px 12px rgba(194,107,74,0.25);
+        }
+        html[data-theme='dark'] .btn-outline {
+            color: #D98B6B;
+            border-color: #D98B6B;
+        }
+        html[data-theme='dark'] .btn-outline:hover {
+            background: #D98B6B;
+            color: #1A1310;
+        }
+        .btn-cta-white {
+            background: white;
+            color: #9E4E33;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-cta-white:hover {
+            background: #f3f4f6;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+        /* ═══════════════════════════════════════════════════════
+   HOME 1 — ANIMATIONS & ONLINE BACKGROUNDS
+   ═══════════════════════════════════════════════════════ */
+
+html { scroll-behavior: smooth; }
+
+/* ── HERO SECTION ── */
+.home-hero {
+    position: relative;
+    background-image: url('assets/home1bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    overflow: hidden;
+    isolation: isolate;
+}
+.home-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.96) 0%, rgba(253,246,242,0.92) 55%, rgba(249,241,236,0.88) 100%);
+    z-index: 0;
+}
+html[data-theme='dark'] .home-hero::before {
+    background: linear-gradient(135deg, rgba(26,19,16,0.96) 0%, rgba(43,31,26,0.92) 55%, rgba(26,19,16,0.88) 100%);
+}
+.home-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle at 15% 30%, rgba(194,107,74,0.10) 0%, transparent 40%),
+        radial-gradient(circle at 85% 70%, rgba(158,78,51,0.08) 0%, transparent 45%);
+    z-index: 0;
+    animation: pulseGlow 8s ease-in-out infinite;
+    pointer-events: none;
+}
+.home-hero > * { position: relative; z-index: 2; }
+
+@keyframes pulseGlow {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.55; }
+}
+
+/* Floating orbs in hero */
+.hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 1;
+}
+.hero-orb-1 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, #C26B4A, transparent);
+    top: -100px; right: -80px;
+    animation: floatOrb 14s ease-in-out infinite;
+}
+.hero-orb-2 {
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, #D98B6B, transparent);
+    bottom: -80px; left: -60px;
+    animation: floatOrb 18s ease-in-out infinite reverse;
+}
+@keyframes floatOrb {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.08); }
+    66% { transform: translate(-30px, 20px) scale(0.95); }
+}
+
+/* Floating particles */
+.floating-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
+}
+.particle {
+    position: absolute;
+    width: 6px; height: 6px;
+    background: rgba(194,107,74,0.5);
+    border-radius: 50%;
+    animation: floatUp linear infinite;
+}
+.particle:nth-child(1) { left: 8%;  animation-duration: 14s; animation-delay: 0s;   }
+.particle:nth-child(2) { left: 22%; animation-duration: 18s; animation-delay: 2s;  width: 4px; height: 4px; }
+.particle:nth-child(3) { left: 42%; animation-duration: 12s; animation-delay: 1s;  }
+.particle:nth-child(4) { left: 62%; animation-duration: 20s; animation-delay: 3s;  width: 8px; height: 8px; }
+.particle:nth-child(5) { left: 78%; animation-duration: 16s; animation-delay: 0.5s;}
+.particle:nth-child(6) { left: 92%; animation-duration: 13s; animation-delay: 2.5s; width: 5px; height: 5px; }
+@keyframes floatUp {
+    0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+    10%  { opacity: 0.9; }
+    90%  { opacity: 0.9; }
+    100% { transform: translateY(-120px) scale(1); opacity: 0; }
+}
+
+/* Hero text entrance */
+.hero-anim {
+    opacity: 0;
+    transform: translateY(32px);
+    animation: heroFadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.hero-anim-1 { animation-delay: 0.15s; }
+.hero-anim-2 { animation-delay: 0.35s; }
+.hero-anim-3 { animation-delay: 0.55s; }
+.hero-anim-4 { animation-delay: 0.75s; }
+@keyframes heroFadeIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Hero image card glow */
+.hero-img-card {
+    position: relative;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s ease;
+    background-image: url('assets/home1bg1.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.hero-img-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(194,107,74,0.85), rgba(158,78,51,0.75));
+    z-index: 1;
+    transition: opacity 0.5s ease;
+}
+.hero-img-card:hover::before { opacity: 0.7; }
+.hero-img-card > * { position: relative; z-index: 2; color: white; }
+.hero-img-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 32px 64px rgba(194,107,74,0.32);
+}
+.hero-img-card i {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.hero-img-card:hover i {
+    transform: scale(1.15) rotate(-6deg);
+}
+
+/* ── SCROLL REVEAL ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(45px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active { opacity: 1; transform: translateY(0); }
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal-left.active { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal-right.active { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.reveal-scale.active { opacity: 1; transform: scale(1); }
+
+.stagger > * {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.stagger.active > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+.stagger.active > *:nth-child(2) { transition-delay: 0.18s; opacity: 1; transform: translateY(0); }
+.stagger.active > *:nth-child(3) { transition-delay: 0.31s; opacity: 1; transform: translateY(0); }
+.stagger.active > *:nth-child(4) { transition-delay: 0.44s; opacity: 1; transform: translateY(0); }
+.stagger.active > *:nth-child(5) { transition-delay: 0.57s; opacity: 1; transform: translateY(0); }
+.stagger.active > *:nth-child(6) { transition-delay: 0.70s; opacity: 1; transform: translateY(0); }
+/* ── FEATURE CARDS ── */
+.feature-card {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.5s ease,
+                border-color 0.5s ease;
+}
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+    transition: left 0.6s ease;
+}
+.feature-card:hover::before { left: 100%; }
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 24px 48px rgba(194,107,74,0.15);
+    border-color: var(--color-accent);
+}
+.feature-card .feature-icon {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.feature-card:hover .feature-icon {
+    transform: scale(1.12) rotate(-8deg);
+    background: linear-gradient(135deg, #C26B4A, #9E4E33);
+}
+.feature-card:hover .feature-icon i { color: white !important; }
+
+/* ── SPACE CARDS ── */
+.space-card {
+    transition: transform 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.55s ease;
+}
+.space-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 28px 56px rgba(194,107,74,0.20);
+}
+.space-card .space-img {
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    background-size: cover;
+    background-position: center;
+}
+.space-card:hover .space-img {
+    transform: scale(1.08);
+}
+.space-img-1 { background-image: url('assets/space1.jpg'); }
+.space-img-2 { background-image: url('assets/space2.jpg'); }
+.space-img-3 { background-image: url('assets/space3.jpg'); }
+.space-card .space-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(44,30,26,0.05) 0%, rgba(44,30,26,0.55) 100%);
+    opacity: 0.8;
+    transition: opacity 0.5s ease;
+}
+.space-card:hover .space-overlay { opacity: 1; }
+
+/* ── STEP CIRCLES ── */
+.step-circle {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.step-item:hover .step-circle {
+    transform: translateY(-8px) scale(1.08);
+    border-color: var(--color-accent);
+    background: linear-gradient(135deg, #C26B4A, #9E4E33);
+    color: white !important;
+    box-shadow: 0 16px 32px rgba(194,107,74,0.3);
+}
+.step-item:hover .step-circle i { color: white !important; }
+.step-item {
+    transition: transform 0.4s ease;
+}
+.step-item:hover {
+    transform: translateY(-4px);
+}
+
+/* ── TESTIMONIAL CARDS ── */
+.testimonial-card {
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.45s ease,
+                border-color 0.45s ease;
+}
+.testimonial-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 24px 48px rgba(194,107,74,0.16);
+    border-color: var(--color-accent);
+}
+
+/* ── SECTION DIVIDER WAVE ── */
+.section-wave {
+    position: relative;
+}
+.section-wave::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; left: 0; right: 0;
+    height: 30px;
+    background: radial-gradient(ellipse at center, transparent 40%, var(--color-hover) 100%);
+    opacity: 0.4;
+    pointer-events: none;
+}
+
+/* ── CTA SECTION ── */
+.cta-home {
+    position: relative;
+    background-image: url('assets/home1bg2.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    overflow: hidden;
+}
+.cta-home::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(44,30,26,0.85), rgba(158,78,51,0.78));
+    z-index: 1;
+}
+.cta-home > * { position: relative; z-index: 2; }
+
+.cta-ring {
+    animation: ringFloat 5s ease-in-out infinite;
+    transform-origin: center;
+}
+@keyframes ringFloat {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(-8deg) scale(1.08); }
+}
+
+/* ── RESPONSIVE TUNING ── */
+@media (max-width: 1024px) {
+    .home-hero { background-attachment: scroll; }
+    .cta-home { background-attachment: scroll; }
+}
+
+@media (max-width: 640px) {
+    .hero-orb { opacity: 0.2; filter: blur(40px); }
+    .hero-orb-1 { width: 260px; height: 260px; }
+    .hero-orb-2 { width: 220px; height: 220px; }
+    .particle { width: 4px !important; height: 4px !important; }
+}
+
+/* ── REDUCED MOTION ── */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+    </style>
+    <style>
+        ::-webkit-scrollbar { display: none; }
+        html { scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+    <header class="fixed top-4 left-0 right-0 z-50 transition-all duration-300 shadow-md border border-border bg-background mx-auto w-[96%] xl:w-[96%] 2xl:w-[92%] max-w-[1600px] rounded-full" id="main-header">
+        <nav class="px-6 sm:px-8 xl:px-6 2xl:px-12 py-3 flex items-center justify-between h-[70px]">
+            <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2 shrink-0">    
+                <i class="fa-solid fa-ring text-accent"></i>
+<span class="text-accent">Vowora</span>
+            </a>
+
+            <div class="hidden xl:flex items-center xl:space-x-4 2xl:space-x-6 rtl:space-x-reverse">
+                <div class="flex xl:space-x-3 2xl:space-x-6 rtl:space-x-reverse rtl:ml-6 text-primary-text font-medium text-[15px] 2xl:text-base">
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center" id="home-dropdown-btn">
+                            Home
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="index.html">Home 1</a>
+                            <a href="home2.html">Home 2</a>
+                        </div>
+                    </div>
+                    <a href="about.html" class="nav-link">About Us</a>
+                    <a href="services.html" class="nav-link">Service</a>
+                    <a href="pricing.html" class="nav-link">Events</a>
+                    <a href="process.html" class="nav-link">Decor</a>
+                    <!-- <a href="areas.html" class="nav-link">Gallery</a> -->
+                    
+                    <a href="contact.html" class="nav-link">Contact</a>
+                    <div class="dropdown-wrapper">
+                        <button class="nav-link flex items-center" id="dashboard-dropdown-btn">
+                            Dashboard
+                            <svg class="w-3 h-3 ml-1 relative top-[2.5px] transition-transform duration-200 text-primary-text" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="admin.html">Admin Dashboard</a>
+                            <a href="userdash.html">Client Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-px h-6 bg-border xl:mx-1 2xl:mx-3"></div>
+                
+                <div class="flex items-center xl:space-x-2 2xl:space-x-4 rtl:space-x-reverse">
+                    <button id="theme-toggle" class="icon-btn text-primary-text hover:text-accent p-2 rounded-xl bg-hover border border-border transition duration-200">
+                        <svg class="w-5 h-5 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                        <svg class="w-5 h-5 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                    </button>
+                    <button id="lang-icon" class="text-primary-text hover:text-accent p-2 rounded-xl bg-hover border border-border transition duration-200">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                        </svg>
+                    </button>
+                    <div class="flex items-center xl:ml-2 rtl:xl:ml-0 rtl:xl:mr-2 2xl:ml-4 rtl:2xl:ml-0 rtl:2xl:mr-4">
+                        <a href="signup.html" class="book-btn w-14 h-14 rounded-full font-bold shadow-md flex items-center justify-center text-white hover:scale-105 transition-transform" title="Sign Up">
+                            <i class="fa-solid fa-user-plus text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="xl:hidden flex items-center">
+                <button id="mobile-menu-open" class="icon-btn text-primary-text hover:text-accent p-1.5 rounded-full"><svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" /></svg></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow">
+
+        <!-- SECTION 1: HERO -->
+        <!-- SECTION 1: HERO — with animated background + particles -->
+<section class="home-hero pt-36 pb-20 px-6 sm:px-8 2xl:px-12 min-h-[600px] flex items-center relative">
+    <!-- Floating orbs -->
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+
+    <!-- Floating particles -->
+    <div class="floating-particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="max-w-[1600px] mx-auto w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-20 relative z-10">
+        <div class="lg:w-1/2 flex flex-col items-start text-start space-y-6">
+            <div class="inline-flex items-start gap-3 px-5 py-3 rounded-2xl md:rounded-full bg-hover border border-border shadow-sm hero-anim hero-anim-1 max-w-full">
+                <span class="relative flex h-3 w-3 shrink-0 mt-1">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-accent"></span>
+                </span>
+                <span class="text-accent font-bold text-xs sm:text-sm tracking-wide uppercase text-left leading-relaxed">Intimate · Celebratory · Unforgettable</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-text leading-tight hero-anim hero-anim-2">
+                Where Your <br/>
+                <span class="text-accent">Forever Begins.</span>
+            </h1>
+
+            <p class="text-secondary-text text-lg lg:text-xl max-w-xl leading-relaxed hero-anim hero-anim-3">
+                Host your rehearsal dinner or engagement party in a space that feels as special as the moment. Curated venues, bespoke catering, and effortless planning.
+            </p>
+
+            <div class="flex flex-wrap gap-4 pt-4 hero-anim hero-anim-4">
+                <a href="services.html" class="btn-primary px-8 py-3.5 rounded-xl font-bold text-lg shadow-lg flex items-center gap-2">
+                    Explore Spaces <i class="fa-solid fa-arrow-right rtl:rotate-180"></i>
+                </a>
+                <a href="contact.html" class="btn-outline px-8 py-3.5 rounded-xl font-bold text-lg flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-check"></i> Check Availability
+                </a>
+            </div>
+        </div>
+
+        <!-- <div class="lg:w-1/2 w-full relative hero-anim hero-anim-4">
+            <div class="absolute inset-0 bg-custom-gradient opacity-20 blur-3xl rounded-full translate-y-10"></div>
+           <div class="hero-img-card relative rounded-3xl overflow-hidden shadow-2xl border border-border aspect-[4/3] flex flex-col items-center justify-center p-8 text-center">
+    <h3 class="text-3xl md:text-4xl font-extrabold mb-4">Celebrate in Style</h3>
+    <p class="max-w-sm text-white/90 text-lg leading-relaxed">From candlelit terraces to garden pavilions — every detail designed for joy.</p>
+</div>
+        </div> -->
+    </div>
+</section>
+
+        <!-- SECTION 2: WHY CHOOSE US -->
+        <!-- SECTION 2: WHY CHOOSE US -->
+<section class="py-20 bg-hover border-y border-border">
+    <div class="px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto">
+        <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Why Couples Choose Vowora</h2>
+            <p class="text-secondary-text text-lg">We blend romantic ambiance with seamless logistics so you can focus on the moment — not the details.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 stagger">
+            <div class="feature-card bg-background p-8 rounded-2xl border border-border shadow-sm">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-hover border border-border flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-heart text-2xl text-accent"></i>
+                </div>
+                <h3 class="text-xl font-bold text-primary-text mb-3 md:min-h-[3.5rem] flex items-center">Curated Ambiance</h3>
+                <p class="text-secondary-text leading-relaxed">Warm lighting, elegant florals, and intimate layouts that set the perfect tone.</p>
+            </div>
+
+            <div class="feature-card bg-background p-8 rounded-2xl border border-border shadow-sm">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-hover border border-border flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-utensils text-2xl text-accent"></i>
+                </div>
+                <h3 class="text-xl font-bold text-primary-text mb-3 md:min-h-[3.5rem] flex items-center">Gourmet Catering</h3>
+                <p class="text-secondary-text leading-relaxed">Custom menus from our award-winning chefs, crafted to your taste and dietary needs.</p>
+            </div>
+
+            <div class="feature-card bg-background p-8 rounded-2xl border border-border shadow-sm">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-hover border border-border flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-user-group text-2xl text-accent"></i>
+                </div>
+                <h3 class="text-xl font-bold text-primary-text mb-3 md:min-h-[3.5rem] flex items-center">Guest RSVP Dashboard</h3>
+                <p class="text-secondary-text leading-relaxed">Track attendance, meal choices, and seating in real time from your client portal.</p>
+            </div>
+
+            <div class="feature-card bg-background p-8 rounded-2xl border border-border shadow-sm">
+                <div class="feature-icon w-14 h-14 rounded-2xl bg-hover border border-border flex items-center justify-center mb-6">
+                    <i class="fa-solid fa-tags text-2xl text-accent"></i>
+                </div>
+                <h3 class="text-xl font-bold text-primary-text mb-3 md:min-h-[3.5rem] flex items-center">Transparent Packages</h3>
+                <p class="text-secondary-text leading-relaxed">All-inclusive pricing for venue, decor, and catering — no surprises, just joy.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- SECTION 3: SPACES -->
+        <!-- SECTION 3: SPACES -->
+<section class="py-24 px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
+        <div class="max-w-2xl text-start">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Our Intimate Spaces</h2>
+            <p class="text-secondary-text text-lg">From cozy courtyards to elegant ballrooms — find the perfect backdrop for your celebration.</p>
+        </div>
+        <a href="services.html" class="btn-outline px-6 py-2.5 rounded-lg font-bold whitespace-nowrap">View All Spaces</a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger">
+        <div class="space-card group border border-border rounded-2xl overflow-hidden bg-background shadow-sm flex flex-col h-full">
+            <div class="h-56 relative overflow-hidden shrink-0">
+                <div class="space-img space-img-1 absolute inset-0"></div>
+                <div class="space-overlay"></div>
+                <!-- <div class="absolute inset-0 flex items-center justify-center z-10">
+                    <i class="fa-solid fa-tree text-6xl text-white drop-shadow-lg transition-transform duration-500 group-hover:scale-125"></i>
+                </div> -->
+            </div>
+            <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-2xl font-bold text-primary-text mb-3">The Garden Pavilion</h3>
+                <p class="text-secondary-text mb-6 leading-relaxed">Open-air elegance with string lights and lush greenery. Perfect for 60–100 guests.</p>
+                <a href="#" class="text-accent font-bold hover:underline flex items-center gap-2 mt-auto">View Details <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+            </div>
+        </div>
+
+        <div class="space-card group border border-border rounded-2xl overflow-hidden bg-background shadow-sm flex flex-col h-full">
+            <div class="h-56 relative overflow-hidden shrink-0">
+                <div class="space-img space-img-2 absolute inset-0"></div>
+                <div class="space-overlay"></div>
+                <!-- <div class="absolute inset-0 flex items-center justify-center z-10">
+                    <i class="fa-solid fa-couch text-6xl text-white drop-shadow-lg transition-transform duration-500 group-hover:scale-125"></i>
+                </div> -->
+            </div>
+            <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-2xl font-bold text-primary-text mb-3">The Library Lounge</h3>
+                <p class="text-secondary-text mb-6 leading-relaxed">Vintage charm with velvet seating and a fireplace. Ideal for intimate dinners up to 40.</p>
+                <a href="#" class="text-accent font-bold hover:underline flex items-center gap-2 mt-auto">View Details <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+            </div>
+        </div>
+
+        <div class="space-card group border border-border rounded-2xl overflow-hidden bg-background shadow-sm flex flex-col h-full">
+            <div class="h-56 relative overflow-hidden shrink-0">
+                <div class="space-img space-img-3 absolute inset-0"></div>
+                <div class="space-overlay"></div>
+                <!-- <div class="absolute inset-0 flex items-center justify-center z-10">
+                    <i class="fa-solid fa-champagne-glasses text-6xl text-white drop-shadow-lg transition-transform duration-500 group-hover:scale-125"></i>
+                </div> -->
+            </div>
+            <div class="p-8 flex flex-col flex-grow">
+                <h3 class="text-2xl font-bold text-primary-text mb-3">The Rooftop Terrace</h3>
+                <p class="text-secondary-text mb-6 leading-relaxed">Panoramic city views, chic bar, and modern elegance for up to 120 guests.</p>
+                <a href="#" class="text-accent font-bold hover:underline flex items-center gap-2 mt-auto">View Details <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+        <!-- SECTION 4: HOW IT WORKS -->
+        <section class="py-24 bg-hover border-y border-border">
+            <div class="px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Effortless Planning</h2>
+                    <p class="text-secondary-text text-lg">Four simple steps from “yes” to the perfect celebration.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-12 text-center relative stagger">
+                    <div class="hidden md:block absolute top-12 left-[12%] right-[12%] h-0.5 bg-border z-0"></div>
+                    
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full bg-background border-4 border-border text-accent flex items-center justify-center text-3xl mb-6 shadow-md transition-colors hover:border-accent">
+                            <i class="fa-solid fa-calendar-check"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary-text mb-3 md:min-h-[3.5rem] flex items-center">1. Check Availability</h3>
+                        <p class="text-secondary-text">Browse our spaces and pick a date that works for your celebration.</p>
+                    </div>
+                    
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full bg-background border-4 border-border text-accent flex items-center justify-center text-3xl mb-6 shadow-md transition-colors hover:border-accent">
+                            <i class="fa-solid fa-palette"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary-text mb-3 md:min-h-[3.5rem] flex items-center">2. Choose Packages</h3>
+                        <p class="text-secondary-text">Select catering, decor, and beverage packages that match your vision.</p>
+                    </div>
+                    
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full bg-background border-4 border-border text-accent flex items-center justify-center text-3xl mb-6 shadow-md transition-colors hover:border-accent">
+                            <i class="fa-solid fa-envelope-open-text"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary-text mb-3 md:min-h-[3.5rem] flex items-center">3. Send Invites</h3>
+                        <p class="text-secondary-text">Share your RSVP link and watch responses roll in on your dashboard.</p>
+                    </div>
+                    
+                    <div class="relative z-10 flex flex-col items-center">
+                        <div class="w-24 h-24 rounded-full bg-background border-4 border-border text-accent flex items-center justify-center text-3xl mb-6 shadow-md transition-colors hover:border-accent">
+                            <i class="fa-solid fa-glass-cheers"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary-text mb-3 md:min-h-[3.5rem] flex items-center">4. Celebrate</h3>
+                        <p class="text-secondary-text">Arrive, relax, and enjoy every moment — we handle the rest.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: TESTIMONIALS -->
+        <section class="py-24 px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Love Stories & Celebrations</h2>
+                <p class="text-secondary-text text-lg">Real words from couples who celebrated with us.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-hover p-8 rounded-2xl border border-border relative flex flex-col h-full">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-border opacity-50"></i>
+                    <div class="flex text-yellow-400 mb-6 text-sm gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-primary-text text-lg mb-8 leading-relaxed">"Our rehearsal dinner at the Garden Pavilion was magical. The team handled everything — we just danced and laughed all night."</p>
+                    <div class="flex items-center gap-4 border-t border-border pt-6 mt-auto">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-lg shrink-0">AL</div>
+                        <div class="min-h-[4.5rem] flex flex-col justify-center">
+                            <h4 class="font-bold text-primary-text leading-tight mb-1">Amelia & Liam</h4>
+                            <p class="text-sm text-secondary-text">Rehearsal Dinner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-hover p-8 rounded-2xl border border-border relative flex flex-col h-full">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-border opacity-50"></i>
+                    <div class="flex text-yellow-400 mb-6 text-sm gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-primary-text text-lg mb-8 leading-relaxed">"The Rooftop Terrace made our engagement party unforgettable. The views, the food, the RSVP dashboard — flawless."</p>
+                    <div class="flex items-center gap-4 border-t border-border pt-6 mt-auto">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-lg shrink-0">NP</div>
+                        <div class="min-h-[4.5rem] flex flex-col justify-center">
+                            <h4 class="font-bold text-primary-text leading-tight mb-1">Nina & Priya</h4>
+                            <p class="text-sm text-secondary-text">Engagement Party</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-hover p-8 rounded-2xl border border-border relative flex flex-col h-full">
+                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-border opacity-50"></i>
+                    <div class="flex text-yellow-400 mb-6 text-sm gap-1">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-primary-text text-lg mb-8 leading-relaxed">"The Library Lounge was perfect for our intimate dinner. The team even helped with custom florals. Highly recommend!"</p>
+                    <div class="flex items-center gap-4 border-t border-border pt-6 mt-auto">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-lg shrink-0">MC</div>
+                        <div class="min-h-[4.5rem] flex flex-col justify-center">
+                            <h4 class="font-bold text-primary-text leading-tight mb-1">Marcus & Chloe</h4>
+                            <p class="text-sm text-secondary-text">Rehearsal Dinner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 6: CTA -->
+        <!-- SECTION 6: CTA — with photo background -->
+<section class="py-12 px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto mb-16 reveal-scale">
+    <div class="cta-home rounded-3xl p-12 md:p-20 text-center flex flex-col items-center shadow-2xl relative overflow-hidden">
+      
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white mb-6 relative z-10 leading-tight">Ready to Plan Your Celebration?</h2>
+        <p class="text-white/90 text-lg md:text-xl max-w-2xl mb-10 relative z-10">Schedule a private tour, meet our planners, and start designing your perfect rehearsal dinner or engagement party.</p>
+
+        <div class="flex flex-col sm:flex-row gap-4 relative z-10 w-full sm:w-auto">
+            <a href="contact.html" class="btn-cta-white px-6 sm:px-10 py-4 rounded-xl font-bold text-lg shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto whitespace-nowrap">
+                Book a Tour <i class="fa-solid fa-arrow-right rtl:rotate-180 text-accent"></i>
+            </a>
+            <a href="tel:+18005550199" class="bg-transparent border-2 border-white text-white hover:bg-[#9E4E33] hover:border-[#9E4E33] hover:text-white px-6 sm:px-10 py-4 rounded-xl font-bold text-lg shadow-lg transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto whitespace-nowrap">
+                <i class="fa-solid fa-phone"></i> Call Now
+            </a>
+        </div>
+    </div>
+</section>
+                                
+    </main>
+
+    <!-- MOBILE DRAWER -->
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
+        <div id="drawer-backdrop" class="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 pointer-events-none"></div>
+        <div id="drawer-content" class="absolute top-0 left-0 right-0 bg-background rounded-b-2xl shadow-2xl p-6 xl:hidden max-h-[85vh] overflow-y-auto transform translate-y-[-100%] transition-transform duration-300 ease-out">
+            <div class="flex justify-between items-center pb-4 border-b border-border">
+                <a href="index.html" class="text-2xl font-serif font-extrabold tracking-wide flex items-center gap-2">
+                    <i class="fa-solid fa-ring text-accent"></i>
+<span class="text-accent">Vowora</span>
+                </a>
+                <button id="mobile-menu-close" class="text-primary-text hover:text-accent"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+            </div>
+            <nav class="flex flex-col space-y-2 py-4">
+                <div>
+                    <button class="block text-primary-text font-semibold text-lg py-2 w-full text-left flex justify-between items-center" id="mobile-homes-toggle">
+                        Home <svg class="w-4 h-4 transform transition-transform duration-200 text-primary-text" id="homes-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="mobile-homes-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border">
+                        <a href="index.html" class="block text-secondary-text hover:text-accent text-base py-1">Home 1</a>
+                        <a href="home2.html" class="block text-secondary-text hover:text-accent text-base py-1">Home 2</a>
+                    </div>
+                </div>
+                <a href="services.html" class="block text-primary-text font-semibold text-lg py-2">Our Spaces</a>
+                <a href="pricing.html" class="block text-primary-text font-semibold text-lg py-2">Event Packages</a>
+                <a href="process.html" class="block text-primary-text font-semibold text-lg py-2">Catering & Decor</a>
+                <a href="areas.html" class="block text-primary-text font-semibold text-lg py-2">Gallery</a>
+                <a href="about.html" class="block text-primary-text font-semibold text-lg py-2">About Us</a>
+                <a href="contact.html" class="block text-primary-text font-semibold text-lg py-2">Contact</a>
+                <!-- Dashboard Dropdown -->
+                <div>
+                    <button class="block text-primary-text font-semibold text-lg py-2 w-full text-left flex justify-between items-center" id="mobile-dashboard-toggle">
+                        Dashboard
+                        <svg class="w-4 h-4 transform transition-transform duration-200" id="dashboard-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+
+                    <div id="mobile-dashboard-menu" class="hidden pl-4 flex flex-col space-y-1 mt-1 border-l-2 border-border">
+                        <a href="admin.html" class="block text-secondary-text hover:text-accent text-base py-1">Admin Dashboard</a>
+                        <a href="userdash.html" class="block text-secondary-text hover:text-accent text-base py-1">Client Dashboard</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="pt-4 border-t border-border mt-4 flex justify-around items-center">
+                <button id="mobile-lang-icon-drawer" class="flex flex-col items-center"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" />
+                </svg><span class="text-xs mt-1 text-secondary-text">RTL</span></button>
+                <button id="drawer-theme-toggle" class="flex flex-col items-center">
+                    <svg class="w-6 h-6 light-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+                    <svg class="w-6 h-6 dark-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                    <span class="text-xs mt-1 text-secondary-text">Theme</span>
+                </button>
+            </div>
+            <div class="flex mt-5 gap-5 w-full">
+                <a href="login.html" class="flex-1 btn-outline text-center py-1.5 rounded-xl font-bold text-sm shadow-md">Login</a>
+                <a href="signup.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer id="main-footer" class="pt-20 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
+                <div class="lg:col-span-2">
+                    <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2 mb-4">    
+                        <i class="fa-solid fa-ring text-accent"></i>
+<span class="text-accent">Vowora</span>
+                    </a>
+                    <p class="text-lg leading-relaxed max-w-sm !text-white-400">
+                        Intimate venues for rehearsal dinners and engagement parties. Curated spaces, bespoke catering, and effortless planning — so you can focus on each other.
+                    </p>
+                    <div class="flex gap-6 mt-10">
+                        <a href="#" class="text-white hover:text-accent transition text-xl"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-white hover:text-accent transition text-xl"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-white hover:text-accent transition text-xl"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="about.html" class="footer-link">About Us</a></li>
+                        <li><a href="services.html" class="footer-link">Our Spaces</a></li>
+                        <li><a href="pricing.html" class="footer-link">Event Packages</a></li>
+                        <li><a href="process.html" class="footer-link">Catering & Decor</a></li>
+                        <li><a href="contact.html" class="footer-link">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Visit Us</h4>
+                    <ul class="space-y-2 text-white/80">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot mt-1 text-accent text-center w-5"></i>
+                            <span>42 Rosewood Lane,<br>Garden District, NY 10012</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-accent text-center w-5"></i>
+                            <a href="tel:+18005550199" class="footer-link">+1 (800) 555-0199</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-accent text-center w-5"></i>
+                            <a href="mailto:hello@vowandvenue.com" class="footer-link">hello@vowandvenue.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading font-bold text-xl mb-6">Newsletter</h4>
+                    <div class="flex flex-col space-y-4">
+                        <input type="email" placeholder="Email address" class="p-4 text-sm rounded-xl bg-gray-900 border border-gray-800 focus:outline-none text-white" />
+                        <button class="btn-primary font-bold py-3 rounded-xl">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="py-10 text-center text-white-500 text-sm">© 2026 Vowora . All rights reserved.</div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const html = document.documentElement;
+
+            // Drawer Control
+            const menuDrawer = document.getElementById('mobile-menu-drawer');
+            const menuContent = document.getElementById('drawer-content');
+            const menuBackdrop = document.getElementById('drawer-backdrop');
+
+            const openDrawer = () => {
+                menuDrawer.classList.remove('pointer-events-none');
+                menuContent.classList.remove('translate-y-[-100%]');
+                menuBackdrop.classList.add('opacity-50', 'pointer-events-auto');
+                document.body.style.overflow = 'hidden';
+            };
+            const closeDrawer = () => {
+                menuContent.classList.add('translate-y-[-100%]');
+                menuBackdrop.classList.remove('opacity-50', 'pointer-events-auto');
+                setTimeout(() => { menuDrawer.classList.add('pointer-events-none'); document.body.style.overflow = ''; }, 300);
+            };
+
+            document.getElementById('mobile-menu-open').addEventListener('click', openDrawer);
+            document.getElementById('mobile-menu-close').addEventListener('click', closeDrawer);
+            menuBackdrop.addEventListener('click', closeDrawer);
+
+            // Accordions
+            const setupAccordion = (toggleId, menuId, iconId) => {
+                const toggle = document.getElementById(toggleId);
+                toggle?.addEventListener('click', () => {
+                    const menu = document.getElementById(menuId);
+                    const icon = document.getElementById(iconId);
+                    menu.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            };
+            setupAccordion('mobile-homes-toggle', 'mobile-homes-menu', 'homes-icon');
+            setupAccordion('mobile-dashboard-toggle', 'mobile-dashboard-menu', 'dashboard-icon');
+
+            // Theme & RTL
+            const themeToggles = [document.getElementById('theme-toggle'), document.getElementById('drawer-theme-toggle')];
+            const applyTheme = (theme) => {
+                html.setAttribute('data-theme', theme);
+                document.querySelectorAll('.light-icon').forEach(i => i.classList.toggle('hidden', theme === 'dark'));
+                document.querySelectorAll('.dark-icon').forEach(i => i.classList.toggle('hidden', theme === 'light'));
+            };
+            themeToggles.forEach(btn => btn.addEventListener('click', () => {
+                const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+                localStorage.setItem('theme', next);
+                applyTheme(next);
+            }));
+            applyTheme(localStorage.getItem('theme') || 'light');
+
+            const langToggles = [document.getElementById('lang-icon'), document.getElementById('mobile-lang-icon-drawer')];
+            langToggles.forEach(btn => btn.addEventListener('click', () => {
+                const current = localStorage.getItem('language') === 'ar' ? 'en' : 'ar';
+                localStorage.setItem('language', current);
+                html.setAttribute('dir', current === 'ar' ? 'rtl' : 'ltr');
+            }));
+            html.setAttribute('dir', localStorage.getItem('language') === 'ar' ? 'rtl' : 'ltr');
+
+            // Active Nav Logic
+            const setActiveNavLink = () => {
+                const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+                
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    if (link.getAttribute('href') === currentPath) {
+                        link.classList.add('active', 'text-accent', 'font-bold');
+                    } else {
+                        link.classList.remove('active', 'text-accent', 'font-bold');
+                    }
+                });
+
+                if (['index.html', 'home2.html'].includes(currentPath)) {
+                    document.getElementById('home-dropdown-btn')?.classList.add('active', 'text-accent', 'font-bold');
+                }
+                if (['admin.html', 'userdash.html'].includes(currentPath)) {
+                    document.getElementById('dashboard-dropdown-btn')?.classList.add('active', 'text-accent', 'font-bold');
+                }
+
+                document.querySelectorAll('#drawer-content a').forEach(link => {
+                    const href = link.getAttribute('href');
+                    if (href === currentPath) {
+                        link.classList.add('text-accent', 'font-bold');
+                        link.classList.remove('text-primary-text', 'text-secondary-text');
+                    } else {
+                        if (link.closest('#mobile-homes-menu') || link.closest('#mobile-dashboard-menu')) {
+                            link.classList.add('text-secondary-text');
+                            link.classList.remove('text-accent', 'font-bold');
+                        } else {
+                            link.classList.add('text-primary-text');
+                            link.classList.remove('text-accent', 'font-bold');
+                        }
+                    }
+                });
+
+                if (['index.html', 'home2.html'].includes(currentPath)) {
+                    document.getElementById('mobile-homes-toggle')?.classList.add('text-accent', 'font-bold');
+                }
+                if (['admin.html', 'userdash.html'].includes(currentPath)) {
+                    document.getElementById('mobile-dashboard-toggle')?.classList.add('text-accent', 'font-bold');
+                }
+            };
+            setActiveNavLink();
+        });
+
+        // Pricing toggle (kept for compatibility)
+        document.addEventListener("DOMContentLoaded", function () {
+            const btnMonthly = document.getElementById("btn-monthly");
+            const btnSeasonal = document.getElementById("btn-seasonal");
+            const monthlyPlans = document.getElementById("monthly-plans");
+            const seasonalPlans = document.getElementById("seasonal-plans");
+            if (!btnMonthly || !btnSeasonal || !monthlyPlans || !seasonalPlans) return;
+
+            btnMonthly.addEventListener("click", function () {
+                btnMonthly.classList.add("bg-[#C26B4A]", "text-white", "shadow-lg");
+                btnMonthly.classList.remove("text-primary-text");
+                btnSeasonal.classList.remove("bg-[#C26B4A]", "text-white", "shadow-lg");
+                btnSeasonal.classList.add("text-primary-text");
+                monthlyPlans.classList.remove("hidden");
+                monthlyPlans.classList.add("grid");
+                seasonalPlans.classList.remove("grid");
+                seasonalPlans.classList.add("hidden");
+            });
+
+            btnSeasonal.addEventListener("click", function () {
+                btnSeasonal.classList.add("bg-[#C26B4A]", "text-white", "shadow-lg");
+                btnSeasonal.classList.remove("text-primary-text");
+                btnMonthly.classList.remove("bg-[#C26B4A]", "text-white", "shadow-lg");
+                btnMonthly.classList.add("text-primary-text");
+                seasonalPlans.classList.remove("hidden");
+                seasonalPlans.classList.add("grid");
+                monthlyPlans.classList.remove("grid");
+                monthlyPlans.classList.add("hidden");
+            });
+        });
+    </script>
+    <script>
+// ═══════════ SCROLL REVEAL OBSERVER ═══════════
+document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -80px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // ═══════════ HEADER SHADOW ON SCROLL ═══════════
+    const header = document.getElementById('main-header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 12px 32px rgba(0,0,0,0.12)';
+            } else {
+                header.style.boxShadow = '';
+            }
+        }, { passive: true });
+    }
+
+    // ═══════════ HERO PARALLAX (desktop only) ═══════════
+    // const hero = document.querySelector('.home-hero');
+    // if (hero && window.matchMedia('(min-width: 1024px)').matches) {
+    //     window.addEventListener('scroll', () => {
+    //         const scrolled = window.scrollY;
+    //         if (scrolled < 900) {
+    //             hero.style.backgroundPositionY = `${scrolled * 0.3}px`;
+    //         }
+    //     }, { passive: true });
+    // }
+});
+</script>
+</body>
+</html>
+
+
+
+
+
