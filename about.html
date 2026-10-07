@@ -57,6 +57,30 @@
         .bg-custom-gradient {
             background: linear-gradient(135deg, #C26B4A 0%, #9E4E33 100%);
         }
+        /* ═══════════ CTA BACKGROUND IMAGE (ab1) ═══════════ */
+.cta-about-bg {
+    position: relative;
+    background-image: url('assets/ab1.avif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Dark overlay so the white text stays readable over the image */
+.cta-about-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(44, 30, 26, 0.85), rgba(158, 78, 51, 0.80));
+    z-index: 1;
+    border-radius: 1.5rem; /* Matches the rounded-3xl */
+}
+
+/* Make sure content sits above the overlay */
+.cta-about-bg > * {
+    position: relative;
+    z-index: 2;
+}
         .bg-soft-gradient {
             background: linear-gradient(160deg, #FDF6F2 0%, #F9F1EC 100%);
         }
@@ -1236,9 +1260,9 @@
 </section>
 
         <!-- ═══════════ CTA ═══════════ -->
-        <section class="py-12 px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto mb-16 reveal-scale">
-            <div class="bg-custom-gradient rounded-3xl p-12 md:p-20 text-center flex flex-col items-center shadow-2xl relative overflow-hidden">
-                <i class="fa-solid fa-ring cta-ring absolute -bottom-16 -right-16 text-[200px] text-white opacity-10 rtl:-left-16 rtl:right-auto rtl:rotate-y-180"></i>
+        <!-- ═══════════ CTA ═══════════ -->
+<section class="py-12 px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto mb-16 reveal-scale">
+    <div class="cta-about-bg rounded-3xl p-12 md:p-20 text-center flex flex-col items-center shadow-2xl relative overflow-hidden">                <i class="fa-solid fa-ring cta-ring absolute -bottom-16 -right-16 text-[200px] text-white opacity-10 rtl:-left-16 rtl:right-auto rtl:rotate-y-180"></i>
                 <i class="fa-solid fa-champagne-glasses absolute -top-10 -left-10 text-[150px] text-white opacity-10 rtl:-right-10 rtl:left-auto"></i>
                 
                 <span class="text-white/80 font-bold text-sm tracking-[0.25em] uppercase mb-4 relative z-10">Let's Meet</span>
