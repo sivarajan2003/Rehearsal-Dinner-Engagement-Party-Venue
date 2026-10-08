@@ -32,7 +32,7 @@
             --color-footer-text: #F0E6E0;
         }
 
-        html { scroll-behavior: smooth; overflow-x: hidden; }
+        html {  overflow-x: hidden; }
 
         body {
             background-color: var(--color-background);
@@ -250,7 +250,7 @@
     </style>
     <style>
         ::-webkit-scrollbar { display: none; }
-        html { scrollbar-width: none; -ms-overflow-style: none; scroll-behavior: smooth; }
+        html { scrollbar-width: none; -ms-overflow-style: none;  }
     </style>
 </head>
 <body>
@@ -368,8 +368,27 @@
             console.log('%cLooks like you took a wrong turn! Let\'s get you back to the celebration.', 'font-size:12px; color:#6D5B53;');
         });
     </script>
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            if (typeof Lenis !== 'undefined') {
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    smooth: true,
+                    smoothTouch: false,
+                });
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
+                requestAnimationFrame(raf);
+            }
+        });
+    </script>
 </body>
 </html>
+
 
 
 
