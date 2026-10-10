@@ -695,39 +695,73 @@ html[data-theme='dark'] .map-container iframe {
         </section>
 
         <!-- ═══════════ FAQ ═══════════ -->
-        <section class="py-24 bg-hover border-y border-border">
-            <div class="px-6 sm:px-8 2xl:px-12 max-w-[1000px] mx-auto">
-                <div class="text-center mb-16">
-                    <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">Before You Write</span>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-primary-text mt-4 mb-4">Contact FAQ</h2>
-                    <p class="text-secondary-text text-lg">Quick answers to the most common questions we receive.</p>
-                </div>
+       <!-- ═══════════ FAQ ═══════════ -->
+<section class="py-24 bg-hover border-y border-border">
+    <div class="px-6 sm:px-8 2xl:px-12 max-w-[1000px] mx-auto">
+        <div class="text-center mb-16">
+            <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">Before You Write</span>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-primary-text mt-4 mb-4">Contact FAQ</h2>
+            <p class="text-secondary-text text-lg">Quick answers to the most common questions we receive.</p>
+        </div>
 
-                <div class="space-y-4">
-                    <div class="faq-item bg-background border border-border rounded-2xl p-6">
-                        <h4 class="font-bold text-primary-text mb-2">How quickly will I hear back?</h4>
-                        <p class="text-secondary-text text-sm leading-relaxed">We reply to every enquiry within 24 hours — usually within a few hours during business days. Weekend messages are answered Monday morning.</p>
-                    </div>
-                    <div class="faq-item bg-background border border-border rounded-2xl p-6">
-                        <h4 class="font-bold text-primary-text mb-2">Can I tour the venue without booking?</h4>
-                        <p class="text-secondary-text text-sm leading-relaxed">Absolutely. Tours are free and available 7 days a week by appointment. We'll show you all six spaces and answer every question.</p>
-                    </div>
-                    <div class="faq-item bg-background border border-border rounded-2xl p-6">
-                        <h4 class="font-bold text-primary-text mb-2">What information should I include in the form?</h4>
-                        <p class="text-secondary-text text-sm leading-relaxed">The more you share, the better we can help. Your date, guest count, and vision are the most useful. Don't worry if you're still undecided — we'll guide you.</p>
-                    </div>
-                    <div class="faq-item bg-background border border-border rounded-2xl p-6">
-                        <h4 class="font-bold text-primary-text mb-2">Do you offer virtual tours for out-of-town clients?</h4>
-                        <p class="text-secondary-text text-sm leading-relaxed">Yes. We offer video walkthroughs and video calls for clients who can't visit in person. Just mention it in the form and we'll arrange a time.</p>
-                    </div>
-                    <div class="faq-item bg-background border border-border rounded-2xl p-6">
-                        <h4 class="font-bold text-primary-text mb-2">Can I call instead of using the form?</h4>
-                        <p class="text-secondary-text text-sm leading-relaxed">Of course. Call us at <a href="tel:+18005550199" class="text-accent font-bold hover:underline">+1 (800) 555-0199</a> during opening hours. If we miss you, leave a message and we'll call back same day.</p>
-                    </div>
+        <div class="space-y-4">
+            <!-- FAQ 1 -->
+            <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden">
+                <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer">
+                    <h4 class="font-bold text-primary-text">How quickly will I hear back?</h4>
+                    <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                </button>
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="text-secondary-text text-sm leading-relaxed px-6 pb-6">We reply to every enquiry within 24 hours — usually within a few hours during business days. Weekend messages are answered Monday morning.</p>
                 </div>
             </div>
-        </section>
 
+            <!-- FAQ 2 -->
+            <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden">
+                <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer">
+                    <h4 class="font-bold text-primary-text">Can I tour the venue without booking?</h4>
+                    <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                </button>
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="text-secondary-text text-sm leading-relaxed px-6 pb-6">Absolutely. Tours are free and available 7 days a week by appointment. We'll show you all six spaces and answer every question.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 3 -->
+            <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden">
+                <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer">
+                    <h4 class="font-bold text-primary-text">What information should I include in the form?</h4>
+                    <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                </button>
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="text-secondary-text text-sm leading-relaxed px-6 pb-6">The more you share, the better we can help. Your date, guest count, and vision are the most useful. Don't worry if you're still undecided — we'll guide you.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 4 -->
+            <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden">
+                <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer">
+                    <h4 class="font-bold text-primary-text">Do you offer virtual tours for out-of-town clients?</h4>
+                    <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                </button>
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="text-secondary-text text-sm leading-relaxed px-6 pb-6">Yes. We offer video walkthroughs and video calls for clients who can't visit in person. Just mention it in the form and we'll arrange a time.</p>
+                </div>
+            </div>
+
+            <!-- FAQ 5 -->
+            <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden">
+                <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer">
+                    <h4 class="font-bold text-primary-text">Can I call instead of using the form?</h4>
+                    <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                </button>
+                <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                    <p class="text-secondary-text text-sm leading-relaxed px-6 pb-6">Of course. Call us at <a href="tel:+18005550199" class="text-accent font-bold hover:underline">+1 (800) 555-0199</a> during opening hours. If we miss you, leave a message and we'll call back same day.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         <!-- ═══════════ CTA ═══════════ -->
         <!-- ═══════════ CTA — with contact2.jpg background ═══════════ -->
 <section class="py-12 px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto mb-16">
@@ -989,6 +1023,37 @@ html[data-theme='dark'] .map-container iframe {
             }
         });
     </script>
+    <script>
+    // FAQ Accordion — same as Services page
+    document.querySelectorAll('.faq-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const content = item.querySelector('.faq-content');
+            const icon = item.querySelector('.faq-icon');
+            const isOpen = item.classList.contains('faq-open');
+
+            // Close all other open FAQs
+            document.querySelectorAll('.faq-item.faq-open').forEach(openItem => {
+                if (openItem !== item) {
+                    openItem.classList.remove('faq-open');
+                    openItem.querySelector('.faq-content').style.maxHeight = '0px';
+                    openItem.querySelector('.faq-icon').classList.remove('rotate-180');
+                }
+            });
+
+            // Toggle current
+            if (isOpen) {
+                item.classList.remove('faq-open');
+                content.style.maxHeight = '0px';
+                icon.classList.remove('rotate-180');
+            } else {
+                item.classList.add('faq-open');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                icon.classList.add('rotate-180');
+            }
+        });
+    });
+</script>
 </body>
 </html>
 
