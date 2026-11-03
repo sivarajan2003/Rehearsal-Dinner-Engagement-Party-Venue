@@ -187,6 +187,47 @@
             box-shadow: 0 24px 48px rgba(194,107,74,0.18);
             border-color: var(--color-accent);
         }
+        .plan-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        .plan-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(194,107,74,0.18);
+            border-color: var(--color-accent);
+        }
+        .plan-card > a {
+            margin-top: auto;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 3.25rem;
+            min-height: 3.25rem;
+        }
+        .plan-card h3 {
+            min-height: 2.75rem;
+            display: flex;
+            align-items: center;
+        }
+        .plan-card p.text-secondary-text.mb-6 {
+            min-height: 3.25rem;
+            display: flex;
+            align-items: flex-start;
+        }
+        .plan-card ul {
+            min-height: 15rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+        .plan-card ul li {
+            min-height: 2.1rem;
+            display: flex;
+            align-items: center;
+        }
         .plan-featured {
             border: 2px solid var(--color-accent) !important;
             box-shadow: 0 24px 60px rgba(194,107,74,0.22);
@@ -194,6 +235,10 @@
         }
         @media (max-width: 1024px) {
             .plan-featured { transform: scale(1); }
+            .plan-card h3 { min-height: auto; }
+            .plan-card p.text-secondary-text.mb-6 { min-height: auto; }
+            .plan-card ul { min-height: auto; }
+            .plan-card ul li { min-height: auto; }
         }
         .toggle-btn {
             transition: all 0.3s ease;
@@ -226,8 +271,18 @@
             flex-direction: column;
             height: 100%;
         }
+        .addon-card h4 {
+            min-height: 1.75rem;
+            display: flex;
+            align-items: center;
+        }
+        .addon-card p {
+            min-height: 3rem;
+        }
         .addon-card > div:last-child {
             margin-top: auto;
+            padding-top: 0.75rem;
+            border-top: 1px dashed var(--color-border);
         }
         .addon-card:hover {
             background: var(--color-hover);
@@ -336,8 +391,9 @@
                         </svg>
                     </button>
                     <div class="flex items-center xl:ml-2 rtl:xl:ml-0 rtl:xl:mr-2 2xl:ml-4 rtl:2xl:ml-0 rtl:2xl:mr-4">
-                        <a href="signup.html" class="book-btn w-14 h-14 rounded-full font-bold shadow-md flex items-center justify-center text-white hover:scale-105 transition-transform" title="Sign Up">
-                            <i class="fa-solid fa-user-plus text-xl"></i>
+                        <a href="login.html" class="book-btn px-6 py-2.5 rounded-full font-bold text-sm shadow-md flex items-center gap-2 text-white hover:scale-105 transition-all" title="Login">
+                            <span>Login</span>
+                            <i class="fa-solid fa-arrow-right-to-bracket text-xs rtl:rotate-180"></i>
                         </a>
                     </div>
                 </div>
@@ -841,15 +897,15 @@
                 </button>
             </div>
             <div class="flex mt-5 gap-5 w-full">
-                <a href="login.html" class="flex-1 btn-outline text-center py-1.5 rounded-xl font-bold text-sm shadow-md">Login</a>
-                <a href="signup.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
+                <a href="login.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Login</a>
+                <a href="signup.html" class="flex-1 btn-outline text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
             </div>
         </div>
     </div>
 
     <!-- ══════════ FOOTER ══════════ -->
     <footer id="main-footer" class="pt-20 transition-colors duration-300">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-6 sm:px-8 2xl:px-12 max-w-[1600px]">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
                 <div class="lg:col-span-2">
                     <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2 mb-4">    

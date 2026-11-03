@@ -174,17 +174,161 @@
     background-position: center;
     background-attachment: fixed;
 }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (min-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+            }
+        }
         .service-card {
             transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
             display: flex;
             flex-direction: column;
-            
+            height: 100%;
+        }
+        .service-card .service-img-wrap {
+            width: 100%;
+            height: 180px;
+            border-radius: 1.25rem;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            position: relative;
+            background: var(--color-hover);
+        }
+        .service-card .service-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .service-card:hover .service-img {
+            transform: scale(1.08);
+        }
+        .service-card .service-icon-box {
+            position: absolute;
+            top: 0.85rem;
+            left: 0.85rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 0.85rem;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-accent);
+            font-size: 1.15rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+        [dir="rtl"] .service-card .service-icon-box {
+            left: auto;
+            right: 0.85rem;
+        }
+        .service-card:hover .service-icon-box {
+            background: var(--color-accent);
+            color: #ffffff;
+            transform: scale(1.08);
+        }
+        .service-card .service-header-wrap {
+            display: flex;
+            flex-direction: column;
         }
         .service-card h3 {
-            min-height: 4rem;
+            display: flex;
+            align-items: center;
+            font-size: 1.35rem;
+            line-height: 1.3;
         }
-        .service-card > a {
+        .service-card .service-desc {
+            margin-bottom: 0;
+            padding-bottom: 1.5rem;
+        }
+        .service-card .service-checklist {
+            border-top: 1px solid var(--color-border);
+            padding-top: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+        }
+        .service-card .service-checklist > div {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+        }
+        .service-card .service-action-wrap {
+            border-top: 1px solid var(--color-border);
+            padding-top: 1rem;
             margin-top: auto;
+        }
+        .service-card .service-action-btn {
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        /* Responsive baseline alignment without hiding or truncating text */
+        @media (min-width: 1024px) {
+            .service-card h3 {
+                min-height: 3.5rem;
+            }
+            .service-card .service-desc {
+                min-height: 6.25rem;
+            }
+            .service-card .service-checklist {
+                min-height: 13.5rem;
+            }
+            .service-card .service-checklist > div {
+                min-height: 2.6rem;
+                display: flex;
+                align-items: flex-start;
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+            .service-card h3 {
+                min-height: 3.5rem;
+            }
+            .service-card .service-desc {
+                min-height: 5.5rem;
+            }
+            .service-card .service-checklist {
+                min-height: 13rem;
+            }
+            .service-card .service-checklist > div {
+                min-height: 2.5rem;
+                display: flex;
+                align-items: flex-start;
+            }
+        }
+        @media (max-width: 767px) {
+            .service-card h3 {
+                min-height: auto;
+            }
+            .service-card .service-desc {
+                min-height: auto;
+                padding-bottom: 1.25rem;
+            }
+            .service-card .service-checklist {
+                min-height: auto;
+                margin-bottom: 1.25rem;
+            }
+            .service-card .service-checklist > div {
+                min-height: auto;
+            }
         }
         .service-card:hover {
             transform: translateY(-8px);
@@ -335,8 +479,9 @@
                         </svg>
                     </button>
                     <div class="flex items-center xl:ml-2 rtl:xl:ml-0 rtl:xl:mr-2 2xl:ml-4 rtl:2xl:ml-0 rtl:2xl:mr-4">
-                        <a href="signup.html" class="book-btn w-14 h-14 rounded-full font-bold shadow-md flex items-center justify-center text-white hover:scale-105 transition-transform" title="Sign Up">
-                            <i class="fa-solid fa-user-plus text-xl"></i>
+                        <a href="login.html" class="book-btn px-6 py-2.5 rounded-full font-bold text-sm shadow-md flex items-center gap-2 text-white hover:scale-105 transition-all" title="Login">
+                            <span>Login</span>
+                            <i class="fa-solid fa-arrow-right-to-bracket text-xs rtl:rotate-180"></i>
                         </a>
                     </div>
                 </div>
@@ -377,180 +522,332 @@
             </div>
         </section>
 
-        <!-- ═══════════ SECTION: CORE SERVICES ═══════════ -->
+        <!-- ═══════════ SECTION: CORE SERVICES (8 DETAILED SERVICES) ═══════════ -->
         <section id="services" class="py-24 px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">Core Services</span>
-                <h2 class="text-4xl md:text-5xl font-extrabold text-primary-text mt-4 mb-4">Six Services, One Team.</h2>
-                <p class="text-secondary-text text-lg">Every service is designed to work together — so nothing gets lost between vendors, and nothing gets missed on the night.</p>
+                <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">What We Provide</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-primary-text mt-4 mb-4">Eight Core Event Services</h2>
+                <p class="text-secondary-text text-lg">Every service is crafted in-house to work in complete harmony — ensuring flawless timing, elevated hospitality, and an unforgettable celebration.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="service-card bg-background p-8 rounded-3xl border border-border shadow-sm flex flex-col h-full">
-                    <div class="service-icon-box mb-6">
-                        <i class="fa-solid fa-champagne-glasses text-3xl text-accent"></i>
+            <div class="services-grid">
+                <!-- Service 1: Venue Hire & Exclusivity -->
+                <div class="service-card bg-background p-6 sm:p-7 rounded-3xl border border-border shadow-sm flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div class="service-header-wrap flex flex-col flex-grow">
+                        <div class="service-img-wrap">
+                            <img src="assets/space1.jpg" alt="Private Venue Hire" class="service-img" loading="lazy">
+                            <div class="service-icon-box">
+                                <i class="fa-solid fa-champagne-glasses"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-extrabold text-primary-text mb-3">Private Venue Hire</h3>
+                        <p class="service-desc text-secondary-text text-sm leading-relaxed">
+                            Exclusive access to six architectural settings including garden pavilion, rooftop terrace, wine cellar, and waterfront deck with complete event privacy.
+                        </p>
+                        <div class="service-checklist text-xs text-primary-text flex-grow">
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Accommodates 20 to 120 guests comfortably</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Handcrafted solid oak tables & plush seating</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Climate control & guaranteed indoor backup</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>White-glove setup & full night cleanup</span></div>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-extrabold text-primary-text mb-3">Venue Hire</h3>
-                    <p class="text-secondary-text leading-relaxed mb-5 flex-1">Six distinct spaces for every mood — garden, rooftop, library, cellar, lakeside, and ballroom. All-inclusive from setup to cleanup.</p>
-                    <ul class="space-y-2 text-sm text-secondary-text mb-6">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> 20–120 guests</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Furniture & linens included</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Setup & cleanup included</li>
-                    </ul>
-                    <a href="#" class="text-accent font-bold hover:underline inline-flex items-center gap-2 mt-auto">Learn More <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+                    <div class="service-action-wrap">
+                        <a href="contact.html" class="service-action-btn text-accent font-bold text-sm hover:underline">
+                            <span>Book Venue Tour</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs shrink-0"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Service 2 -->
-                <div class="service-card bg-background p-8 rounded-3xl border border-border shadow-sm flex flex-col h-full">
-                    <div class="service-icon-box mb-6">
-                        <i class="fa-solid fa-utensils text-3xl text-accent"></i>
+                <!-- Service 2: Executive In-House Catering -->
+                <div class="service-card bg-background p-6 sm:p-7 rounded-3xl border border-border shadow-sm flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div class="service-header-wrap flex flex-col flex-grow">
+                        <div class="service-img-wrap">
+                            <img src="assets/about3.jpg" alt="Artisanal Catering" class="service-img" loading="lazy">
+                            <div class="service-icon-box">
+                                <i class="fa-solid fa-utensils"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-extrabold text-primary-text mb-3">Artisanal Catering</h3>
+                        <p class="service-desc text-secondary-text text-sm leading-relaxed">
+                            Multi-course plated dinners, family-style feasts, and roaming canapés prepared by our Executive Chef with seasonal organic produce paired to taste.
+                        </p>
+                        <div class="service-checklist text-xs text-primary-text flex-grow">
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Customized private menu tasting for the couple</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Vegan, vegetarian, gluten-free & halal options</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Late-night savory sliders & woodfired snack bars</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Fine porcelain dinnerware & titanium flatware</span></div>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-extrabold text-primary-text mb-3">In-House Catering</h3>
-                    <p class="text-secondary-text leading-relaxed mb-5 flex-1">Seasonal, chef-designed menus — plated dinners, family-style feasts, or elegant cocktail hours. Dietary needs fully covered.</p>
-                    <ul class="space-y-2 text-sm text-secondary-text mb-6">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Custom menus per event</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Vegetarian, vegan, gluten-free</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Full bar service available</li>
-                    </ul>
-                    <a href="#" class="text-accent font-bold hover:underline inline-flex items-center gap-2 mt-auto">Learn More <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+                    <div class="service-action-wrap">
+                        <a href="contact.html" class="service-action-btn text-accent font-bold text-sm hover:underline">
+                            <span>View Sample Menus</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs shrink-0"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Service 3 -->
-                <div class="service-card bg-background p-8 rounded-3xl border border-border shadow-sm flex flex-col h-full">
-                    <div class="service-icon-box mb-6">
-                        <i class="fa-solid fa-seedling text-3xl text-accent"></i>
+                <!-- Service 3: Signature Mixology & Bar -->
+                <div class="service-card bg-background p-6 sm:p-7 rounded-3xl border border-border shadow-sm flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div class="service-header-wrap flex flex-col flex-grow">
+                        <div class="service-img-wrap">
+                            <img src="assets/home2space4.jpg" alt="Mixology & Bar" class="service-img" loading="lazy">
+                            <div class="service-icon-box">
+                                <i class="fa-solid fa-martini-glass-citrus"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-extrabold text-primary-text mb-3">Mixology & Bar</h3>
+                        <p class="service-desc text-secondary-text text-sm leading-relaxed">
+                            Full-service beverage bars with certified mixologists pouring premium spirits, craft beers, boutique botanicals, and bespoke signature cocktails.
+                        </p>
+                        <div class="service-checklist text-xs text-primary-text flex-grow">
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Bespoke signature cocktails named for you</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Sommelier-curated international natural wines</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Zero-proof craft mocktails & organic cold brews</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Champagne welcome pours & toast glassware</span></div>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-extrabold text-primary-text mb-3">Florals & Decor</h3>
-                    <p class="text-secondary-text leading-relaxed mb-5 flex-1">Romantic tablescapes, seasonal blooms, warm lighting, and personalised styling — designed by our in-house floral team.</p>
-                    <ul class="space-y-2 text-sm text-secondary-text mb-6">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Custom colour palettes</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Candlelit & string light setups</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Locally-sourced blooms</li>
-                    </ul>
-                    <a href="#" class="text-accent font-bold hover:underline inline-flex items-center gap-2 mt-auto">Learn More <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+                    <div class="service-action-wrap">
+                        <a href="contact.html" class="service-action-btn text-accent font-bold text-sm hover:underline">
+                            <span>Explore Bar Tiers</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs shrink-0"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Service 4 -->
-                <div class="service-card bg-background p-8 rounded-3xl border border-border shadow-sm flex flex-col h-full">
-                    <div class="service-icon-box mb-6">
-                        <i class="fa-solid fa-clipboard-check text-3xl text-accent"></i>
+                <!-- Service 4: Floral Design & Tablescapes -->
+                <div class="service-card bg-background p-6 sm:p-7 rounded-3xl border border-border shadow-sm flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div class="service-header-wrap flex flex-col flex-grow">
+                        <div class="service-img-wrap">
+                            <img src="assets/dec1.avif" alt="Florals & Styling" class="service-img" loading="lazy">
+                            <div class="service-icon-box">
+                                <i class="fa-solid fa-seedling"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-extrabold text-primary-text mb-3">Florals & Styling</h3>
+                        <p class="service-desc text-secondary-text text-sm leading-relaxed">
+                            Resident botanical stylists craft floral arches, lush runner greenery, taper candle clusters, and stone ceramic tablescapes for your celebration.
+                        </p>
+                        <div class="service-checklist text-xs text-primary-text flex-grow">
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Locally-farmed blooms & sustainable greenery</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Linen table napkins, custom menus & place cards</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Stemmed hurricanes & drip-free taper candles</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Welcome display board & framed signage decor</span></div>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-extrabold text-primary-text mb-3">Event Coordination</h3>
-                    <p class="text-secondary-text leading-relaxed mb-5 flex-1">A dedicated planner from first call to final toast. We coordinate all vendors, timelines, and logistics for you.</p>
-                    <ul class="space-y-2 text-sm text-secondary-text mb-6">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Day-of coordination</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Vendor management</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Timeline & run-sheet</li>
-                    </ul>
-                    <a href="#" class="text-accent font-bold hover:underline inline-flex items-center gap-2 mt-auto">Learn More <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+                    <div class="service-action-wrap">
+                        <a href="contact.html" class="service-action-btn text-accent font-bold text-sm hover:underline">
+                            <span>View Styling Gallery</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs shrink-0"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Service 5 -->
-                <div class="service-card bg-background p-8 rounded-3xl border border-border shadow-sm flex flex-col h-full">
-                    <div class="service-icon-box mb-6">
-                        <i class="fa-solid fa-envelope-open-text text-3xl text-accent"></i>
+                <!-- Service 5: Dedicated Lead Coordinator -->
+                <div class="service-card bg-background p-6 sm:p-7 rounded-3xl border border-border shadow-sm flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div class="service-header-wrap flex flex-col flex-grow">
+                        <div class="service-img-wrap">
+                            <img src="assets/aboutmeet.jpg" alt="Event Coordination" class="service-img" loading="lazy">
+                            <div class="service-icon-box">
+                                <i class="fa-solid fa-clipboard-check"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-extrabold text-primary-text mb-3">Event Coordination</h3>
+                        <p class="service-desc text-secondary-text text-sm leading-relaxed">
+                            One dedicated planner manages your celebration from initial floor planning to the final evening toast with effortless synchronized execution.
+                        </p>
+                        <div class="service-checklist text-xs text-primary-text flex-grow">
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Single point of contact — zero hand-offs</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Minute-by-minute timeline & vendor run-sheet</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Direct WhatsApp / portal messaging with planner</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>On-site arrival, cueing speeches & toast coordination</span></div>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-extrabold text-primary-text mb-3">RSVP & Guest Management</h3>
-                    <p class="text-secondary-text leading-relaxed mb-5 flex-1">Our client dashboard tracks every RSVP, meal choice, and dietary note in real time — no spreadsheets, no stress.</p>
-                    <ul class="space-y-2 text-sm text-secondary-text mb-6">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Custom RSVP link</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Real-time dashboard</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Seating & meal tracking</li>
-                    </ul>
-                    <a href="#" class="text-accent font-bold hover:underline inline-flex items-center gap-2 mt-auto">Learn More <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+                    <div class="service-action-wrap">
+                        <a href="contact.html" class="service-action-btn text-accent font-bold text-sm hover:underline">
+                            <span>Meet Our Planners</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs shrink-0"></i>
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Service 6 -->
-                <div class="service-card bg-background p-8 rounded-3xl border border-border shadow-sm flex flex-col h-full">
-                    <div class="service-icon-box mb-6">
-                        <i class="fa-solid fa-camera-retro text-3xl text-accent"></i>
+                <!-- Service 6: RSVP & Digital Guest Portal -->
+                <div class="service-card bg-background p-6 sm:p-7 rounded-3xl border border-border shadow-sm flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div class="service-header-wrap flex flex-col flex-grow">
+                        <div class="service-img-wrap">
+                            <img src="assets/about2.jpg" alt="RSVP & Guest Suite" class="service-img" loading="lazy">
+                            <div class="service-icon-box">
+                                <i class="fa-solid fa-envelope-open-text"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-extrabold text-primary-text mb-3">RSVP & Guest Suite</h3>
+                        <p class="service-desc text-secondary-text text-sm leading-relaxed">
+                            Replace messy spreadsheets with our custom guest suite. Share a branded private RSVP link, track dietary needs, and build seating diagrams.
+                        </p>
+                        <div class="service-checklist text-xs text-primary-text flex-grow">
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Personalized RSVP URL with custom branding</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Live tracking of guest counts & dietary notes</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Drag-and-drop table seating arrangement tool</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Automated reminder broadcasts & directions to guests</span></div>
+                        </div>
                     </div>
-                    <h3 class="text-2xl font-extrabold text-primary-text mb-3">Photo & Music Vendors</h3>
-                    <p class="text-secondary-text leading-relaxed mb-5 flex-1">Curated list of trusted photographers, DJs, and live musicians — all vetted by our team and coordinated on your behalf.</p>
-                    <ul class="space-y-2 text-sm text-secondary-text mb-6">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Preferred vendor network</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Booking coordination</li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Setup & sound check</li>
-                    </ul>
-                    <a href="#" class="text-accent font-bold hover:underline inline-flex items-center gap-2 mt-auto">Learn More <i class="fa-solid fa-arrow-right rtl:rotate-180"></i></a>
+                    <div class="service-action-wrap">
+                        <a href="userdash.html" class="service-action-btn text-accent font-bold text-sm hover:underline">
+                            <span>Preview Dashboard</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs shrink-0"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 7: Audio, Visual & Atmospheric Lighting -->
+                <div class="service-card bg-background p-6 sm:p-7 rounded-3xl border border-border shadow-sm flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div class="service-header-wrap flex flex-col flex-grow">
+                        <div class="service-img-wrap">
+                            <img src="assets/home2space6.jpg" alt="Audio, Visual & Lights" class="service-img" loading="lazy">
+                            <div class="service-icon-box">
+                                <i class="fa-solid fa-sliders"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-extrabold text-primary-text mb-3">Audio, Visual & Lights</h3>
+                        <p class="service-desc text-secondary-text text-sm leading-relaxed">
+                            State-of-the-art acoustic engineering, warm bistro festoon lighting, motorized 4K projection screens, and wireless mics for heartfelt toasts.
+                        </p>
+                        <div class="service-checklist text-xs text-primary-text flex-grow">
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Wireless handheld mics with feedback suppression</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>4K laser projectors for childhood photo montages</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Dimmer-controlled warm architectural uplighting</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Direct plug-and-play Spotify & console inputs</span></div>
+                        </div>
+                    </div>
+                    <div class="service-action-wrap">
+                        <a href="contact.html" class="service-action-btn text-accent font-bold text-sm hover:underline">
+                            <span>Request AV Specs</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs shrink-0"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 8: Curated Photo & Music Network -->
+                <div class="service-card bg-background p-6 sm:p-7 rounded-3xl border border-border shadow-sm flex flex-col justify-between h-full transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div class="service-header-wrap flex flex-col flex-grow">
+                        <div class="service-img-wrap">
+                            <img src="assets/about1.jpg" alt="Photo & Entertainment" class="service-img" loading="lazy">
+                            <div class="service-icon-box">
+                                <i class="fa-solid fa-camera-retro"></i>
+                            </div>
+                        </div>
+                        <h3 class="font-extrabold text-primary-text mb-3">Photo & Entertainment</h3>
+                        <p class="service-desc text-secondary-text text-sm leading-relaxed">
+                            Direct booking of vetted artists including lifestyle documentary photographers, acoustic guitarists, jazz trios, and vinyl DJs for celebrations.
+                        </p>
+                        <div class="service-checklist text-xs text-primary-text flex-grow">
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Documentary photography with high-res digital gallery</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Solo violinists, jazz ensembles & curated dinner DJs</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Pre-event soundchecks & artist hospitality managed</span></div>
+                            <div><i class="fa-solid fa-check text-accent shrink-0 mt-0.5"></i><span>Full end-to-end booking with zero third-party stress</span></div>
+                        </div>
+                    </div>
+                    <div class="service-action-wrap">
+                        <a href="contact.html" class="service-action-btn text-accent font-bold text-sm hover:underline">
+                            <span>View Artist Roster</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs shrink-0"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- ═══════════ SECTION: PACKAGES ═══════════ -->
+        <!-- ═══════════ SECTION: SIGNATURE EXPERIENCE PACKAGES (STREAMLINED TIERS) ═══════════ -->
         <section class="py-24 bg-hover border-y border-border">
             <div class="px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto">
-                <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">Bundled Packages</span>
-                    <h2 class="text-4xl md:text-5xl font-extrabold text-primary-text mt-4 mb-4">Simple, All-Inclusive Pricing</h2>
-                    <p class="text-secondary-text text-lg">Combine services into one transparent package. No hidden fees, no surprise add-ons.</p>
+                <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                    <div class="max-w-2xl text-start">
+                        <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">Curated Service Bundles</span>
+                        <h2 class="text-4xl md:text-5xl font-extrabold text-primary-text mt-3 mb-4">Complete Turnkey Celebrations</h2>
+                        <p class="text-secondary-text text-lg">We seamlessly unify our culinary artists, stylists, and coordinators into signature full-service experiences.</p>
+                    </div>
+                    <a href="pricing.html" class="btn-outline px-6 py-3 rounded-full font-bold whitespace-nowrap inline-flex items-center gap-2">
+                        View Detailed Rate Card <i class="fa-solid fa-arrow-right rtl:rotate-180"></i>
+                    </a>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                    <!-- Package 1 -->
-                    <div class="bg-background border border-border rounded-3xl p-8 shadow-sm">
-                        <div class="text-accent font-bold text-sm tracking-wider uppercase mb-3">Intimate</div>
-                        <h3 class="text-3xl font-extrabold text-primary-text mb-2">The Vow</h3>
-                        <p class="text-secondary-text mb-6">Perfect for small rehearsal dinners and intimate engagement gatherings.</p>
-                        <div class="mb-6">
-                            <span class="text-5xl font-extrabold text-accent">$2,400</span>
-                            <span class="text-secondary-text">/ event</span>
+                <div class="space-y-8">
+                    <!-- Experience Tier 1 -->
+                    <div class="bg-background border border-border rounded-3xl p-6 sm:p-10 flex flex-col lg:flex-row items-center gap-8 shadow-sm hover:shadow-xl transition-all duration-300">
+                        <div class="w-full lg:w-1/3 h-64 sm:h-72 rounded-2xl overflow-hidden relative shrink-0">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" style="background-image: url('assets/space1.jpg');"></div>
+                            <span class="absolute top-4 left-4 bg-background/90 backdrop-blur-md text-accent text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Intimate Evenings</span>
                         </div>
-                        <ul class="space-y-3 text-sm text-secondary-text mb-8">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Up to 40 guests</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Library Lounge or Cellar Room</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> 3-course plated dinner</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Basic florals & candles</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> RSVP dashboard access</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Day-of coordination</li>
-                        </ul>
-                        <a href="contact.html" class="btn-outline w-full text-center py-3 rounded-xl font-bold inline-block">Choose The Vow</a>
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                    <h3 class="text-2xl sm:text-3xl font-extrabold text-primary-text">The Intimate Rehearsal Dinner</h3>
+                                    <span class="text-2xl font-bold text-accent">From $2,400</span>
+                                </div>
+                                <p class="text-secondary-text text-base leading-relaxed mb-6">
+                                    Designed for wedding parties and close family. Includes an exclusive 4-hour reservation, three-course plated culinary experience, candlelight floral centerpieces, and personalized dinner menus.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-border pt-6 mb-6">
+                                    <div class="flex items-center gap-2 text-sm text-primary-text">
+                                        <i class="fa-solid fa-users text-accent"></i>
+                                        <span>Up to 40 Guests</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-primary-text">
+                                        <i class="fa-solid fa-utensils text-accent"></i>
+                                        <span>3-Course Tasting</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-primary-text">
+                                        <i class="fa-solid fa-clipboard-check text-accent"></i>
+                                        <span>Lead Coordinator</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-border pt-6">
+                                <span class="text-xs text-secondary-text">Includes table styling, glassware, clean up & dedicated staff</span>
+                                <a href="contact.html" class="btn-primary px-6 py-2.5 rounded-full font-bold text-sm">Inquire Date</a>
+                            </div>
+                        </div>
                     </div>
 
-                    <!-- Package 2 (Featured) -->
-                    <div class="package-featured bg-background border border-border rounded-3xl p-8 shadow-xl relative">
-                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-custom-gradient text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full">Most Popular</div>
-                        <div class="text-accent font-bold text-sm tracking-wider uppercase mb-3">Signature</div>
-                        <h3 class="text-3xl font-extrabold text-primary-text mb-2">The Venue</h3>
-                        <p class="text-secondary-text mb-6">Our most-loved package. Full-service celebration for medium-sized events.</p>
-                        <div class="mb-6">
-                            <span class="text-5xl font-extrabold text-accent">$4,800</span>
-                            <span class="text-secondary-text">/ event</span>
+                    <!-- Experience Tier 2 -->
+                    <div class="bg-background border-2 border-accent rounded-3xl p-6 sm:p-10 flex flex-col lg:flex-row items-center gap-8 shadow-xl relative overflow-hidden transition-all duration-300">
+                        <div class="w-full lg:w-1/3 h-64 sm:h-72 rounded-2xl overflow-hidden relative shrink-0">
+                            <div class="w-full h-full bg-cover bg-center transition-transform duration-500 hover:scale-105" style="background-image: url('assets/home2space3.jpg');"></div>
+                            <span class="absolute top-4 left-4 bg-accent text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">Most Selected</span>
                         </div>
-                        <ul class="space-y-3 text-sm text-secondary-text mb-8">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Up to 80 guests</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Garden Pavilion or Lakeside Deck</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> 4-course dinner + cocktail hour</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Full floral design & lighting</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> RSVP dashboard + seating</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Full coordination + vendors</li>
-                        </ul>
-                        <a href="contact.html" class="btn-primary w-full text-center py-3 rounded-xl font-bold inline-block shadow-lg">Choose The Venue</a>
-                    </div>
-
-                    <!-- Package 3 -->
-                    <div class="bg-background border border-border rounded-3xl p-8 shadow-sm">
-                        <div class="text-accent font-bold text-sm tracking-wider uppercase mb-3">Grand</div>
-                        <h3 class="text-3xl font-extrabold text-primary-text mb-2">The Forever</h3>
-                        <p class="text-secondary-text mb-6">Our largest package — for unforgettable engagement parties and grand celebrations.</p>
-                        <div class="mb-6">
-                            <span class="text-5xl font-extrabold text-accent">$7,900</span>
-                            <span class="text-secondary-text">/ event</span>
+                        <div class="flex-1 flex flex-col justify-between">
+                            <div>
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+                                    <h3 class="text-2xl sm:text-3xl font-extrabold text-primary-text">The Signature Engagement Soirée</h3>
+                                    <span class="text-2xl font-bold text-accent">From $4,800</span>
+                                </div>
+                                <p class="text-secondary-text text-base leading-relaxed mb-6">
+                                    A vibrant cocktail and dining experience featuring passing hors d'oeuvres, signature mixology bar, ambient acoustic setup, immersive floral installations, and full live guest management.
+                                </p>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 border-t border-border pt-6 mb-6">
+                                    <div class="flex items-center gap-2 text-sm text-primary-text">
+                                        <i class="fa-solid fa-users text-accent"></i>
+                                        <span>Up to 80 Guests</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-primary-text">
+                                        <i class="fa-solid fa-martini-glass text-accent"></i>
+                                        <span>4-Course + Cocktail</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 text-sm text-primary-text">
+                                        <i class="fa-solid fa-wand-magic-sparkles text-accent"></i>
+                                        <span>Full Floral Design</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between border-t border-border pt-6">
+                                <span class="text-xs text-secondary-text">Includes custom menu tasting, cake cutting & complimentary RSVP suite</span>
+                                <a href="contact.html" class="btn-primary px-6 py-2.5 rounded-full font-bold text-sm">Inquire Date</a>
+                            </div>
                         </div>
-                        <ul class="space-y-3 text-sm text-secondary-text mb-8">
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Up to 120 guests</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Rooftop Terrace (exclusive)</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> 5-course dinner + open bar</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Premium florals & custom decor</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Full guest management suite</li>
-                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-accent"></i> Photo & music vendor booking</li>
-                        </ul>
-                        <a href="contact.html" class="btn-outline w-full text-center py-3 rounded-xl font-bold inline-block">Choose The Forever</a>
                     </div>
                 </div>
 
-                <p class="text-center text-secondary-text mt-10 text-sm">All packages include venue hire, staff, cleaning, and standard insurance. Custom packages available on request.</p>
+                <p class="text-center text-secondary-text mt-10 text-sm">Need a fully bespoke multi-day celebration? Our culinary and styling planners build custom itineraries on request.</p>
             </div>
         </section>
 
@@ -795,15 +1092,15 @@
                 </button>
             </div>
             <div class="flex mt-5 gap-5 w-full">
-                <a href="login.html" class="flex-1 btn-outline text-center py-1.5 rounded-xl font-bold text-sm shadow-md">Login</a>
-                <a href="signup.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
+                <a href="login.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Login</a>
+                <a href="signup.html" class="flex-1 btn-outline text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
             </div>
         </div>
     </div>
 
     <!-- ══════════ FOOTER ══════════ -->
     <footer id="main-footer" class="pt-20 transition-colors duration-300">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-6 sm:px-8 2xl:px-12 max-w-[1600px]">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
                 <div class="lg:col-span-2">
                     <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2 mb-4">    

@@ -219,19 +219,20 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(44,30,26,0.55) 0%, rgba(44,30,26,0.80) 100%);
+    background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 50%, rgba(0,0,0,0.85) 100%);
     z-index: 1;
     transition: opacity 0.5s ease;
 }
 
 .philosophy-card:hover::before {
-    opacity: 0.85;
+    opacity: 0.9;
 }
 
 .philosophy-card > * {
     position: relative;
     z-index: 2;
     color: white;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.65);
 }
 
 .philosophy-card .philosophy-title {
@@ -345,7 +346,7 @@ html[data-theme='dark'] .timeline-section::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(44,30,26,0.15) 0%, rgba(44,30,26,0.55) 100%);
+            background: linear-gradient(180deg, rgba(0,0,0,0) 50%, rgba(0,0,0,0.4) 100%);
             z-index: 1;
         }
         .card-hover-lift:hover .space-bg { transform: scale(1.06); }
@@ -390,11 +391,11 @@ html[data-theme='dark'] .timeline-section::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(44,30,26,0);
+            background: rgba(0,0,0,0);
             transition: background 0.4s ease;
         }
         .gallery-item:hover::after {
-            background: rgba(194,107,74,0.25);
+            background: rgba(0,0,0,0.15);
         }
 
         /* Card hover lift */
@@ -517,8 +518,9 @@ html[data-theme='dark'] .timeline-section::before {
                         </svg>
                     </button>
                     <div class="flex items-center xl:ml-2 rtl:xl:ml-0 rtl:xl:mr-2 2xl:ml-4 rtl:2xl:ml-0 rtl:2xl:mr-4">
-                        <a href="signup.html" class="book-btn w-14 h-14 rounded-full font-bold shadow-md flex items-center justify-center text-white hover:scale-105 transition-transform" title="Sign Up">
-                            <i class="fa-solid fa-user-plus text-xl"></i>
+                        <a href="login.html" class="book-btn px-6 py-2.5 rounded-full font-bold text-sm shadow-md flex items-center gap-2 text-white hover:scale-105 transition-all" title="Login">
+                            <span>Login</span>
+                            <i class="fa-solid fa-arrow-right-to-bracket text-xs rtl:rotate-180"></i>
                         </a>
                     </div>
                 </div>
@@ -607,41 +609,41 @@ html[data-theme='dark'] .timeline-section::before {
                         Read our story <i class="fa-solid fa-arrow-right rtl:rotate-180"></i>
                     </a>
                 </div>
-                <div class="lg:col-span-7 grid grid-cols-2 gap-5">
+                <div class="lg:col-span-7 grid grid-cols-2 gap-3 sm:gap-5">
 
     <!-- Card 1 — Bespoke -->
-    <div class="philosophy-card philosophy-card-1 rounded-3xl p-8 border border-border aspect-square flex flex-col justify-between">
-        <i class="fa-solid fa-heart text-4xl philosophy-icon"></i>
+    <div class="philosophy-card philosophy-card-1 rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 border border-border min-h-[175px] sm:min-h-[220px] md:aspect-square flex flex-col justify-between">
+        <i class="fa-solid fa-heart text-2xl sm:text-3xl md:text-4xl philosophy-icon mb-2"></i>
         <div>
-            <div class="text-2xl font-extrabold philosophy-title">Bespoke</div>
-            <div class="text-sm philosophy-desc mt-1">Every detail tailored to your love story</div>
+            <div class="text-lg sm:text-xl md:text-2xl font-extrabold philosophy-title leading-tight">Bespoke</div>
+            <div class="text-xs sm:text-sm philosophy-desc mt-1 leading-snug">Every detail tailored to your love story</div>
         </div>
     </div>
 
     <!-- Card 2 — 6 Venues -->
-    <div class="philosophy-card philosophy-card-2 rounded-3xl p-8 border border-border aspect-square flex flex-col justify-between mt-8">
-        <i class="fa-solid fa-location-dot text-4xl philosophy-icon"></i>
+    <div class="philosophy-card philosophy-card-2 rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 border border-border min-h-[175px] sm:min-h-[220px] md:aspect-square flex flex-col justify-between mt-0 md:mt-8">
+        <i class="fa-solid fa-location-dot text-2xl sm:text-3xl md:text-4xl philosophy-icon mb-2"></i>
         <div>
-            <div class="text-2xl font-extrabold philosophy-title">6 Venues</div>
-            <div class="text-sm philosophy-desc mt-1">Garden, rooftop, library & more</div>
+            <div class="text-lg sm:text-xl md:text-2xl font-extrabold philosophy-title leading-tight">6 Venues</div>
+            <div class="text-xs sm:text-sm philosophy-desc mt-1 leading-snug">Garden, rooftop, library & more</div>
         </div>
     </div>
 
     <!-- Card 3 — 20-120 Guests -->
-    <div class="philosophy-card philosophy-card-3 rounded-3xl p-8 border border-border aspect-square flex flex-col justify-between -mt-4">
-        <i class="fa-solid fa-user-group text-4xl philosophy-icon"></i>
+    <div class="philosophy-card philosophy-card-3 rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 border border-border min-h-[175px] sm:min-h-[220px] md:aspect-square flex flex-col justify-between mt-0 md:-mt-4">
+        <i class="fa-solid fa-user-group text-2xl sm:text-3xl md:text-4xl philosophy-icon mb-2"></i>
         <div>
-            <div class="text-2xl font-extrabold philosophy-title">20–120</div>
-            <div class="text-sm philosophy-desc mt-1">Guest capacity across all spaces</div>
+            <div class="text-lg sm:text-xl md:text-2xl font-extrabold philosophy-title leading-tight">20–120</div>
+            <div class="text-xs sm:text-sm philosophy-desc mt-1 leading-snug">Guest capacity across all spaces</div>
         </div>
     </div>
 
     <!-- Card 4 — 5-Star -->
-    <div class="philosophy-card philosophy-card-4 rounded-3xl p-8 border border-border aspect-square flex flex-col justify-between mt-4">
-        <i class="fa-solid fa-star text-4xl philosophy-icon"></i>
+    <div class="philosophy-card philosophy-card-4 rounded-2xl sm:rounded-3xl p-5 sm:p-7 md:p-8 border border-border min-h-[175px] sm:min-h-[220px] md:aspect-square flex flex-col justify-between mt-0 md:mt-4">
+        <i class="fa-solid fa-star text-2xl sm:text-3xl md:text-4xl philosophy-icon mb-2"></i>
         <div>
-            <div class="text-2xl font-extrabold philosophy-title">5-Star</div>
-            <div class="text-sm philosophy-desc mt-1">Catering & service, every event</div>
+            <div class="text-lg sm:text-xl md:text-2xl font-extrabold philosophy-title leading-tight">5-Star</div>
+            <div class="text-xs sm:text-sm philosophy-desc mt-1 leading-snug">Catering & service, every event</div>
         </div>
     </div>
 
@@ -864,6 +866,125 @@ html[data-theme='dark'] .timeline-section::before {
             </div>
         </section>
 
+        <!-- ═══════════ SECTION 6.5: THE VOWORA EXPERIENCE HIGHLIGHTS ═══════════ -->
+        <section class="py-24 bg-hover border-y border-border">
+            <div class="px-6 sm:px-8 2xl:px-12 max-w-[1400px] mx-auto">
+                <div class="text-center mb-16">
+                    <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">What Sets Us Apart</span>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-primary-text mt-4 mb-4">Every Celebration, Mastered</h2>
+                    <p class="text-secondary-text text-lg max-w-2xl mx-auto">We infuse thoughtfulness, culinary artistry, and modern hospitality into every facet of your event.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="bg-background border border-border rounded-3xl p-8 lg:p-10 card-hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-hover border border-border flex items-center justify-center text-accent text-2xl mb-6 shadow-sm">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-primary-text mb-3">Custom Floral & Lighting</h3>
+                            <p class="text-secondary-text leading-relaxed mb-6">
+                                Warm bistro bulbs, architectural uplighting, and bespoke floral installations tailored to your wedding palette.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-border flex items-center gap-2 text-sm font-bold text-accent">
+                            <span>Tailored Atmosphere</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-background border border-border rounded-3xl p-8 lg:p-10 card-hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-hover border border-border flex items-center justify-center text-accent text-2xl mb-6 shadow-sm">
+                                <i class="fa-solid fa-plate-wheat"></i>
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-primary-text mb-3">Farm-to-Table Menus</h3>
+                            <p class="text-secondary-text leading-relaxed mb-6">
+                                Seasonal organic ingredients, wood-fired mains, and crafted cocktail pairings designed alongside our Executive Chef.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-border flex items-center gap-2 text-sm font-bold text-accent">
+                            <span>Artisanal Gastronomy</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs"></i>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-background border border-border rounded-3xl p-8 lg:p-10 card-hover-lift flex flex-col justify-between">
+                        <div>
+                            <div class="w-14 h-14 rounded-2xl bg-hover border border-border flex items-center justify-center text-accent text-2xl mb-6 shadow-sm">
+                                <i class="fa-solid fa-users-gear"></i>
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-primary-text mb-3">Dedicated Day-Of Team</h3>
+                            <p class="text-secondary-text leading-relaxed mb-6">
+                                From vendor coordination to table-side drink service, a certified lead planner ensures you remain present in every smile.
+                            </p>
+                        </div>
+                        <div class="pt-6 border-t border-border flex items-center gap-2 text-sm font-bold text-accent">
+                            <span>Effortless Execution</span>
+                            <i class="fa-solid fa-arrow-right rtl:rotate-180 text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══════════ SECTION 6.6: FAQ ACCORDION ═══════════ -->
+        <section class="py-24 px-6 sm:px-8 2xl:px-12 max-w-[1000px] mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">Common Questions</span>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-primary-text mt-4 mb-4">Frequently Asked</h2>
+                <p class="text-secondary-text text-lg">Helpful guidance for booking your rehearsal dinner or engagement soirée.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer hover:bg-hover transition-colors">
+                        <h4 class="font-bold text-primary-text text-base md:text-lg">What makes Vowora venues unique for pre-wedding celebrations?</h4>
+                        <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-secondary-text text-sm md:text-base leading-relaxed px-6 pb-6">Unlike vast wedding halls or noisy public restaurants, our spaces are designed exclusively for intimate gatherings. You receive complete private exclusivity, dedicated acoustic sound setups, and personalized menu styling tailored to your love story.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer hover:bg-hover transition-colors">
+                        <h4 class="font-bold text-primary-text text-base md:text-lg">Can we customize seating arrangements and audio/visual setups?</h4>
+                        <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-secondary-text text-sm md:text-base leading-relaxed px-6 pb-6">Yes! Every space offers flexible layouts including long banquet tables, circular conversational clusters, or chic cocktail lounge setups. High-definition projection screens and wireless microphones are built-in for photo slideshows and heartfelt speeches.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer hover:bg-hover transition-colors">
+                        <h4 class="font-bold text-primary-text text-base md:text-lg">How are bar packages and signature drinks managed?</h4>
+                        <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-secondary-text text-sm md:text-base leading-relaxed px-6 pb-6">We provide open artisanal bars, curated wine pairings, and custom "His & Hers" signature cocktails created during your private tasting session. Non-alcoholic mocktail pairings and craft sodas are also featured.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer hover:bg-hover transition-colors">
+                        <h4 class="font-bold text-primary-text text-base md:text-lg">What happens if weather affects an outdoor venue like the Rooftop?</h4>
+                        <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-secondary-text text-sm md:text-base leading-relaxed px-6 pb-6">Every outdoor booking comes with a guaranteed climate-controlled indoor backup space reserved on the same property at no extra surcharge. Retractable architectural pergolas and heating elements also keep outdoor events cozy year-round.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- ═══════════ SECTION 7: CTA ═══════════ -->
         <!-- ═══════════ SECTION 7: CTA — with photo background ═══════════ -->
 <section class="py-12 px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto mb-16">
@@ -885,6 +1006,17 @@ html[data-theme='dark'] .timeline-section::before {
 </section>
                                 
     </main>
+
+    <!-- ══════════ IMAGE LIGHTBOX MODAL (OPEN/CLOSE) ══════════ -->
+    <div id="image-lightbox" class="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300 flex items-center justify-center p-4 sm:p-8">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white/80 hover:text-white text-3xl sm:text-4xl p-2 z-10 transition-transform hover:scale-110 cursor-pointer">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="relative max-w-5xl max-h-[85vh] flex flex-col items-center">
+            <img id="lightbox-img" src="" alt="Venue Image" class="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl transition-transform duration-300 scale-95" />
+            <p id="lightbox-caption" class="text-white/90 text-center mt-4 text-sm sm:text-base font-medium tracking-wide"></p>
+        </div>
+    </div>
 
     <!-- ══════════ MOBILE DRAWER ══════════ -->
     <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none transition-all duration-300">
@@ -937,15 +1069,15 @@ html[data-theme='dark'] .timeline-section::before {
                 </button>
             </div>
             <div class="flex mt-5 gap-5 w-full">
-                <a href="login.html" class="flex-1 btn-outline text-center py-1.5 rounded-xl font-bold text-sm shadow-md">Login</a>
-                <a href="signup.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
+                <a href="login.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Login</a>
+                <a href="signup.html" class="flex-1 btn-outline text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
             </div>
         </div>
     </div>
 
     <!-- ══════════ FOOTER ══════════ -->
     <footer id="main-footer" class="pt-20 transition-colors duration-300">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-6 sm:px-8 2xl:px-12 max-w-[1600px]">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
                 <div class="lg:col-span-2">
                     <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2 mb-4">    
@@ -1117,6 +1249,88 @@ html[data-theme='dark'] .timeline-section::before {
                 }
                 requestAnimationFrame(raf);
             }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // FAQ Accordion
+            document.querySelectorAll('.faq-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const item = btn.closest('.faq-item');
+                    const content = item.querySelector('.faq-content');
+                    const icon = item.querySelector('.faq-icon');
+                    const isOpen = item.classList.contains('faq-open');
+
+                    // Close all other open items
+                    document.querySelectorAll('.faq-item.faq-open').forEach(openItem => {
+                        if (openItem !== item) {
+                            openItem.classList.remove('faq-open');
+                            openItem.querySelector('.faq-content').style.maxHeight = '0px';
+                            openItem.querySelector('.faq-icon').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Toggle clicked item
+                    if (isOpen) {
+                        item.classList.remove('faq-open');
+                        content.style.maxHeight = '0px';
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        item.classList.add('faq-open');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+
+            // Image Gallery Lightbox (Open & Close)
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const lightboxCaption = document.getElementById('lightbox-caption');
+            const lightboxClose = document.getElementById('lightbox-close');
+
+            const openLightbox = (imgSrc, captionText) => {
+                if (!lightbox || !lightboxImg) return;
+                lightboxImg.src = imgSrc;
+                if (lightboxCaption) lightboxCaption.textContent = captionText || 'Vowora Celebration Gallery';
+                lightbox.classList.remove('opacity-0', 'pointer-events-none');
+                lightbox.classList.add('opacity-100', 'pointer-events-auto');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+                document.body.style.overflow = 'hidden';
+            };
+
+            const closeLightbox = () => {
+                if (!lightbox || !lightboxImg) return;
+                lightbox.classList.remove('opacity-100', 'pointer-events-auto');
+                lightbox.classList.add('opacity-0', 'pointer-events-none');
+                lightboxImg.classList.remove('scale-100');
+                lightboxImg.classList.add('scale-95');
+                document.body.style.overflow = '';
+            };
+
+            // Hook up masonry gallery items
+            document.querySelectorAll('.gallery-item').forEach((item, index) => {
+                const imgDiv = item.querySelector('.gallery-img');
+                if (!imgDiv) return;
+                const bgStyle = imgDiv.style.backgroundImage || window.getComputedStyle(imgDiv).backgroundImage;
+                const match = bgStyle.match(/url\(["']?([^"']*)["']?\)/);
+                if (match && match[1]) {
+                    const imgSrc = match[1];
+                    item.addEventListener('click', () => {
+                        openLightbox(imgSrc, `Vowora Moments — Celebration #${index + 1}`);
+                    });
+                }
+            });
+
+            // Close events
+            lightboxClose?.addEventListener('click', closeLightbox);
+            lightbox?.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeLightbox();
+            });
         });
     </script>
 </body>

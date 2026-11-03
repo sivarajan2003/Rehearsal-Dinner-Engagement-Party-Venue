@@ -403,11 +403,11 @@ html[data-theme='dark'] .home-hero::before {
 .space-card .space-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(44,30,26,0.05) 0%, rgba(44,30,26,0.55) 100%);
-    opacity: 0.8;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,0,0,0.35) 100%);
+    opacity: 0.6;
     transition: opacity 0.5s ease;
 }
-.space-card:hover .space-overlay { opacity: 1; }
+.space-card:hover .space-overlay { opacity: 0.9; }
 
 /* ── STEP CIRCLES ── */
 .step-circle {
@@ -562,8 +562,9 @@ html[data-theme='dark'] .home-hero::before {
                         </svg>
                     </button>
                     <div class="flex items-center xl:ml-2 rtl:xl:ml-0 rtl:xl:mr-2 2xl:ml-4 rtl:2xl:ml-0 rtl:2xl:mr-4">
-                        <a href="signup.html" class="book-btn w-14 h-14 rounded-full font-bold shadow-md flex items-center justify-center text-white hover:scale-105 transition-transform" title="Sign Up">
-                            <i class="fa-solid fa-user-plus text-xl"></i>
+                        <a href="login.html" class="book-btn px-6 py-2.5 rounded-full font-bold text-sm shadow-md flex items-center gap-2 text-white hover:scale-105 transition-all" title="Login">
+                            <span>Login</span>
+                            <i class="fa-solid fa-arrow-right-to-bracket text-xs rtl:rotate-180"></i>
                         </a>
                     </div>
                 </div>
@@ -782,56 +783,269 @@ html[data-theme='dark'] .home-hero::before {
             </div>
         </section>
 
-        <!-- SECTION 5: TESTIMONIALS -->
+        <!-- SECTION 4.5: CURATED EXPERIENCE PACKAGES -->
         <section class="py-24 px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div class="max-w-2xl text-start">
+                    <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">Tailored Celebrations</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-primary-text mt-3 mb-4">Curated Event Packages</h2>
+                    <p class="text-secondary-text text-lg">Transparent, all-inclusive experiences designed around your distinct celebration style.</p>
+                </div>
+                <a href="pricing.html" class="btn-outline px-6 py-3 rounded-full font-bold whitespace-nowrap inline-flex items-center gap-2">
+                    Explore All Pricing <i class="fa-solid fa-arrow-right rtl:rotate-180"></i>
+                </a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Package 1: The Intimate Rehearsal -->
+                <div class="bg-background border border-border rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-hover border border-border flex items-center justify-center text-accent text-2xl mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-champagne-glasses"></i>
+                        </div>
+                        <span class="text-xs font-bold tracking-widest uppercase text-accent">Signature Package</span>
+                        <h3 class="text-2xl font-bold text-primary-text mt-2 mb-3">The Intimate Rehearsal</h3>
+                        <p class="text-secondary-text text-sm leading-relaxed mb-6">Designed for intimate gatherings with family and wedding party before the big day.</p>
+                        
+                        <div class="space-y-3 mb-8 border-t border-border pt-6">
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>3-Course Chef Tasting Dinner</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>4 Hours Dedicated Private Venue Access</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>Candlelight & Fresh Floral Centerpieces</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>Curated Wine Pairing & Welcome Toast</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-border pt-6 flex items-center justify-between mt-auto">
+                        <div>
+                            <span class="text-xs text-secondary-text uppercase tracking-wider block">Up to 40 Guests</span>
+                            <span class="text-2xl font-extrabold text-primary-text">$2,800</span>
+                        </div>
+                        <a href="contact.html" class="btn-primary px-6 py-2.5 rounded-full font-bold text-sm">Select</a>
+                    </div>
+                </div>
+
+                <!-- Package 2: The Engagement Soirée (Highlighted) -->
+                <div class="bg-background border-2 border-accent rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 shadow-2xl relative group overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-accent text-white text-xs font-bold px-5 py-1.5 rounded-bl-2xl uppercase tracking-wider">
+                        Most Popular
+                    </div>
+
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-accent text-white flex items-center justify-center text-2xl mb-6 shadow-md">
+                            <i class="fa-solid fa-ring"></i>
+                        </div>
+                        <span class="text-xs font-bold tracking-widest uppercase text-accent">Grand Celebration</span>
+                        <h3 class="text-2xl font-bold text-primary-text mt-2 mb-3">The Engagement Soirée</h3>
+                        <p class="text-secondary-text text-sm leading-relaxed mb-6">A festive cocktail-style party with signature drinks, live stations, and lounge decor.</p>
+                        
+                        <div class="space-y-3 mb-8 border-t border-border pt-6">
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>Passed Hors d'oeuvres & Grazing Table</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>Open Artisanal Cocktail & Mocktail Bar</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>Full Acoustic Sound System & Mic</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>Digital Guest RSVP & Seating Suite</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-border pt-6 flex items-center justify-between mt-auto">
+                        <div>
+                            <span class="text-xs text-secondary-text uppercase tracking-wider block">Up to 80 Guests</span>
+                            <span class="text-2xl font-extrabold text-primary-text">$4,500</span>
+                        </div>
+                        <a href="contact.html" class="btn-primary px-6 py-2.5 rounded-full font-bold text-sm">Select</a>
+                    </div>
+                </div>
+
+                <!-- Package 3: The Golden Romance -->
+                <div class="bg-background border border-border rounded-3xl p-6 sm:p-8 lg:p-10 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:border-accent group">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-hover border border-border flex items-center justify-center text-accent text-2xl mb-6 group-hover:bg-accent group-hover:text-white transition-colors">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <span class="text-xs font-bold tracking-widest uppercase text-accent">Ultra Luxury</span>
+                        <h3 class="text-2xl font-bold text-primary-text mt-2 mb-3">The Golden Romance</h3>
+                        <p class="text-secondary-text text-sm leading-relaxed mb-6">Complete luxury buyout with customized styling, photographer, and 5-course plating.</p>
+                        
+                        <div class="space-y-3 mb-8 border-t border-border pt-6">
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>Full Venue Buyout & Skyline Terrace</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>5-Course Gourmet Plated Menu</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>Professional Photographer (3 Hours)</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-primary-text">
+                                <i class="fa-solid fa-check text-accent shrink-0"></i>
+                                <span>Dedicated Master Event Coordinator</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-border pt-6 flex items-center justify-between mt-auto">
+                        <div>
+                            <span class="text-xs text-secondary-text uppercase tracking-wider block">Up to 120 Guests</span>
+                            <span class="text-2xl font-extrabold text-primary-text">$6,800</span>
+                        </div>
+                        <a href="contact.html" class="btn-primary px-6 py-2.5 rounded-full font-bold text-sm">Select</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: TESTIMONIALS -->
+        <section class="py-24 bg-hover border-y border-border">
+            <div class="px-6 sm:px-8 2xl:px-12 max-w-[1600px] mx-auto">
             <div class="text-center max-w-2xl mx-auto mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-primary-text mb-4">Love Stories & Celebrations</h2>
                 <p class="text-secondary-text text-lg">Real words from couples who celebrated with us.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-hover p-8 rounded-2xl border border-border relative flex flex-col h-full">
-                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-border opacity-50"></i>
-                    <div class="flex text-yellow-400 mb-6 text-sm gap-1">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-hover p-8 rounded-2xl border border-border relative flex flex-col justify-between h-full">
+                    <div class="flex flex-col flex-grow">
+                        <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-border opacity-50"></i>
+                        <div class="flex text-yellow-400 mb-6 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-primary-text text-base md:text-lg leading-relaxed flex-grow">"Our rehearsal dinner at the Garden Pavilion was magical. The team handled everything — we just danced and laughed all night."</p>
                     </div>
-                    <p class="text-primary-text text-lg mb-8 leading-relaxed">"Our rehearsal dinner at the Garden Pavilion was magical. The team handled everything — we just danced and laughed all night."</p>
-                    <div class="flex items-center gap-4 border-t border-border pt-6 mt-auto">
-                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-lg shrink-0">AL</div>
-                        <div class="min-h-[4.5rem] flex flex-col justify-center">
-                            <h4 class="font-bold text-primary-text leading-tight mb-1">Amelia & Liam</h4>
-                            <p class="text-sm text-secondary-text">Rehearsal Dinner</p>
+                    <div class="flex items-center gap-4 border-t border-border pt-6 mt-8 shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-base shrink-0 shadow-sm">AL</div>
+                        <div class="flex flex-col justify-center">
+                            <h4 class="font-bold text-primary-text text-base leading-snug">Amelia & Liam</h4>
+                            <p class="text-sm text-secondary-text leading-tight mt-0.5">Rehearsal Dinner</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-hover p-8 rounded-2xl border border-border relative flex flex-col h-full">
-                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-border opacity-50"></i>
-                    <div class="flex text-yellow-400 mb-6 text-sm gap-1">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-hover p-8 rounded-2xl border border-border relative flex flex-col justify-between h-full">
+                    <div class="flex flex-col flex-grow">
+                        <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-border opacity-50"></i>
+                        <div class="flex text-yellow-400 mb-6 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                        </div>
+                        <p class="text-primary-text text-base md:text-lg leading-relaxed flex-grow">"The Rooftop Terrace made our engagement party unforgettable. The views, the food, the RSVP dashboard — flawless from start to finish."</p>
                     </div>
-                    <p class="text-primary-text text-lg mb-8 leading-relaxed">"The Rooftop Terrace made our engagement party unforgettable. The views, the food, the RSVP dashboard — flawless."</p>
-                    <div class="flex items-center gap-4 border-t border-border pt-6 mt-auto">
-                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-lg shrink-0">NP</div>
-                        <div class="min-h-[4.5rem] flex flex-col justify-center">
-                            <h4 class="font-bold text-primary-text leading-tight mb-1">Nina & Priya</h4>
-                            <p class="text-sm text-secondary-text">Engagement Party</p>
+                    <div class="flex items-center gap-4 border-t border-border pt-6 mt-8 shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-base shrink-0 shadow-sm">NP</div>
+                        <div class="flex flex-col justify-center">
+                            <h4 class="font-bold text-primary-text text-base leading-snug">Nina & Priya</h4>
+                            <p class="text-sm text-secondary-text leading-tight mt-0.5">Engagement Party</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-hover p-8 rounded-2xl border border-border relative flex flex-col h-full">
-                    <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-border opacity-50"></i>
-                    <div class="flex text-yellow-400 mb-6 text-sm gap-1">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p class="text-primary-text text-lg mb-8 leading-relaxed">"The Library Lounge was perfect for our intimate dinner. The team even helped with custom florals. Highly recommend!"</p>
-                    <div class="flex items-center gap-4 border-t border-border pt-6 mt-auto">
-                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-lg shrink-0">MC</div>
-                        <div class="min-h-[4.5rem] flex flex-col justify-center">
-                            <h4 class="font-bold text-primary-text leading-tight mb-1">Marcus & Chloe</h4>
-                            <p class="text-sm text-secondary-text">Rehearsal Dinner</p>
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-hover p-8 rounded-2xl border border-border relative flex flex-col justify-between h-full">
+                    <div class="flex flex-col flex-grow">
+                        <i class="fa-solid fa-quote-right absolute top-6 right-8 text-4xl text-border opacity-50"></i>
+                        <div class="flex text-yellow-400 mb-6 text-sm gap-1">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                         </div>
+                        <p class="text-primary-text text-base md:text-lg leading-relaxed flex-grow">"The Library Lounge was perfect for our intimate dinner. The team even helped with custom florals. Highly recommend to any couple!"</p>
+                    </div>
+                    <div class="flex items-center gap-4 border-t border-border pt-6 mt-8 shrink-0">
+                        <div class="w-12 h-12 rounded-full bg-accent text-white flex items-center justify-center font-bold text-base shrink-0 shadow-sm">MC</div>
+                        <div class="flex flex-col justify-center">
+                            <h4 class="font-bold text-primary-text text-base leading-snug">Marcus & Chloe</h4>
+                            <p class="text-sm text-secondary-text leading-tight mt-0.5">Rehearsal Dinner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5.5: FREQUENTLY ASKED QUESTIONS -->
+        <section class="py-24 px-6 sm:px-8 2xl:px-12 max-w-[1000px] mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-accent font-bold text-sm tracking-[0.25em] uppercase">Common Questions</span>
+                <h2 class="text-3xl md:text-5xl font-bold text-primary-text mt-3 mb-4">Frequently Asked</h2>
+                <p class="text-secondary-text text-lg">Everything you need to know before planning your celebration at Vowora.</p>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer hover:bg-hover transition-colors">
+                        <h4 class="font-bold text-primary-text text-base md:text-lg">How far in advance should we reserve our celebration date?</h4>
+                        <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-secondary-text text-sm md:text-base leading-relaxed px-6 pb-6">We recommend booking 4–6 months in advance for weekend celebrations and 2–3 months for weekday intimate gatherings. Peak wedding season dates (May through October) book up quickly.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer hover:bg-hover transition-colors">
+                        <h4 class="font-bold text-primary-text text-base md:text-lg">Can we bring outside vendors such as florists and musicians?</h4>
+                        <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-secondary-text text-sm md:text-base leading-relaxed px-6 pb-6">Yes! You are warmly welcome to bring your preferred photographer, acoustic musician/DJ, and custom cake designer. Catering and bar services are handled exclusively by our in-house culinary masters.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer hover:bg-hover transition-colors">
+                        <h4 class="font-bold text-primary-text text-base md:text-lg">What is included in the digital guest RSVP dashboard?</h4>
+                        <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-secondary-text text-sm md:text-base leading-relaxed px-6 pb-6">Every reservation includes instant access to the Vowora Client Portal where you can manage guest lists, track dietary restrictions and meal selections in real time, customize table seatings, and directly message your event planner.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer hover:bg-hover transition-colors">
+                        <h4 class="font-bold text-primary-text text-base md:text-lg">What is the deposit and rescheduling policy?</h4>
+                        <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-secondary-text text-sm md:text-base leading-relaxed px-6 pb-6">A 25% deposit secures your date on our calendar. Date changes are complimentary up to 90 days before your event. Cancellations made more than 60 days before the event receive a full refund.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-item bg-background border border-border rounded-2xl overflow-hidden transition-all duration-300">
+                    <button class="faq-toggle w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer hover:bg-hover transition-colors">
+                        <h4 class="font-bold text-primary-text text-base md:text-lg">Are custom menus and dietary requirements supported?</h4>
+                        <i class="fa-solid fa-chevron-down text-accent transition-transform duration-300 faq-icon shrink-0"></i>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                        <p class="text-secondary-text text-sm md:text-base leading-relaxed px-6 pb-6">Absolutely. Our executive culinary team customizes every menu for vegetarian, vegan, gluten-free, halal, kosher-style, and specific allergen requests without supplementary surcharges.</p>
                     </div>
                 </div>
             </div>
@@ -912,15 +1126,15 @@ html[data-theme='dark'] .home-hero::before {
                 </button>
             </div>
             <div class="flex mt-5 gap-5 w-full">
-                <a href="login.html" class="flex-1 btn-outline text-center py-1.5 rounded-xl font-bold text-sm shadow-md">Login</a>
-                <a href="signup.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
+                <a href="login.html" class="flex-1 book-btn text-center py-2 rounded-xl font-bold text-sm shadow-md">Login</a>
+                <a href="signup.html" class="flex-1 btn-outline text-center py-2 rounded-xl font-bold text-sm shadow-md">Sign Up</a>
             </div>
         </div>
     </div>
 
     <!-- FOOTER -->
     <footer id="main-footer" class="pt-20 transition-colors duration-300">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="container mx-auto px-6 sm:px-8 2xl:px-12 max-w-[1600px]">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-gray-800">
                 <div class="lg:col-span-2">
                     <a href="index.html" class="text-3xl font-serif font-extrabold tracking-wide flex items-center gap-2 mb-4">    
@@ -1170,6 +1384,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 requestAnimationFrame(raf);
             }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.faq-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const item = btn.closest('.faq-item');
+                    const content = item.querySelector('.faq-content');
+                    const icon = item.querySelector('.faq-icon');
+                    const isOpen = item.classList.contains('faq-open');
+
+                    // Close all others
+                    document.querySelectorAll('.faq-item.faq-open').forEach(openItem => {
+                        if (openItem !== item) {
+                            openItem.classList.remove('faq-open');
+                            openItem.querySelector('.faq-content').style.maxHeight = '0px';
+                            openItem.querySelector('.faq-icon').classList.remove('rotate-180');
+                        }
+                    });
+
+                    // Toggle current
+                    if (isOpen) {
+                        item.classList.remove('faq-open');
+                        content.style.maxHeight = '0px';
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        item.classList.add('faq-open');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
         });
     </script>
 </body>
